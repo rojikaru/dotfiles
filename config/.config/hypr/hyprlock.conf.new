@@ -1,0 +1,11 @@
+general {
+    hide_cursor = false
+}
+
+background {
+    path = ~/.config/background
+}
+
+input-field {
+    size = 300, 60
+}
