@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Import Current Theme
+type="$XDG_CONFIG_HOME/rofi/launchers/type-1"
+style='style-2.rasi'
+theme="$type/$style"
+
+rofimoji --selector-args "-theme $theme" --action copy

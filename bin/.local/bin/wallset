@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+dir="$XDG_CONFIG_HOME/rofi/launchers/type-3"
+theme='style-3'
+WALLPAPER_DIR="${WALLPAPER_DIR:-$HOME/Pictures/Wallpapers}"
+SCRIPTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+CWD="$(pwd)"
+
+IFS=$'\n'
+cd "$WALLPAPER_DIR"
+
+chosen=$(
+	for a in *.jpg *.jpeg *.png *.webp *.gif *.mp4 *.webm; do
+		[ -e "$a" ] && echo -en "$a\0icon\x1f$a\n"
+	done |
+		rofi -i -dmenu -p "Select Wallpaper" -theme "${dir}/${theme}.rasi"
+)
+
+if [ -n "$chosen" ]; then
+	# call walset.sh with the chosen filename (including extension)
+	wallset-backend "$WALLPAPER_DIR/$chosen"
+fi
+
+cd "$CWD"

@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+WALLPAPER_DIR="${WALLPAPER_DIR:-$HOME/Pictures/Wallpapers}"
+
+# Colorscheme only — wallpaper is handled by wallset-backend (awww).
+FILE=$1
+
+if [ -z "$FILE" ]; then
+	notify-send \
+		-a "Wallpaper" \
+		-i error \
+		"Wallpaper" \
+		"No images found in $WALLPAPER_DIR"
+	exit 1
+fi
+
+# Set wallpaper and generate theme
+wallust run "$FILE"
+matugen --source-color-index 0 image "$FILE"
+swaync-client -rs
+pywal-cava
+
+swaync-client -rs
+
+notify-send \
+	-a "Wallpaper" \
+	-i info \
+	"Wallpaper" \
+	"ColorScheme changed to '$(basename "$FILE")'"

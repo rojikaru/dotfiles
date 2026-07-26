@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+FLAG=$1
+
+clear
+
+if [[ "$FLAG" == "--example" ]]; then
+	CONFIG_DIR="/usr/share/fastfetch/presets"
+	# Recursively find all .jsonc configs under CONFIG_DIR
+	mapfile -t configs < <(find "$CONFIG_DIR" -type f -name '*.jsonc' 2>/dev/null)
+
+	if [[ ${#configs[@]} -eq 0 ]]; then
+		printf "\e[31mNo .jsonc configs found in $CONFIG_DIR\e[0m\n" >&2
+		exit 1
+	fi
+
+	random_config="${configs[RANDOM % ${#configs[@]}]}"
+	fastfetch --config "$random_config"
+else
+	LOGOS_DIR="$XDG_CONFIG_HOME/fastfetch/logos"
+	mapfile -t logos < <(find "$LOGOS_DIR" -type f -name '*.txt' 2>/dev/null)
+
+	if [[ ${#logos[@]} -eq 0 ]]; then
+		printf "\e[31mNo .txt logos found in $LOGOS_DIR\e[0m\n" >&2
+		exit 1
+	fi
+
+	random_logo="${logos[RANDOM % ${#logos[@]}]}"
+	if [[ "$random_logo" =~ "huge" ]]; then
+		fastfetch --logo "$random_logo" --logo-padding-top 0
+	else
+		fastfetch --logo "$random_logo"
+	fi
+fi

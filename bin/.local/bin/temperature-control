@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+MODE="$1"
+
+CONFIG="$XDG_CONFIG_HOME/hyprsunset/default_temperature.conf"
+temperature=$(cat "$CONFIG" 2>/dev/null || echo 6200)
+
+if [ "$MODE" == "up" ]; then
+	temperature=$((temperature + 300))
+	if [ "$temperature" -gt 6500 ]; then
+		temperature=6500
+	fi
+elif [ "$MODE" == "down" ]; then
+	temperature=$((temperature - 300))
+	if [ "$temperature" -lt 1500 ]; then
+		temperature=1500
+	fi
+fi
+echo "$temperature" >"$CONFIG"
+
+echo "$temperature"
+hyprctl hyprsunset temperature "$temperature" >/dev/null 2>&1

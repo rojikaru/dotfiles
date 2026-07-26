@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Reload Hyprland, SwayNC and Waybar at once
+
+set -euo pipefail
+
+hyprctl reload
+swaync-client -R -rs
+pkill waybar || true
+waybar &
+notify-send -a 'Hyprland' -u normal 'Hyprland' 'Hyprland, SwayNC and Waybar restarted'

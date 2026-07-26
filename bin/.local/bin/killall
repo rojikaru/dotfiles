@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+hyprctl clients -j | jq -r '.[] | select(.workspace.id != -99) | .pid' | xargs kill

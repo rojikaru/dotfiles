@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+dir="$XDG_CONFIG_HOME/rofi/launchers/type-1/"
+theme='style-2'
+
+if command -v powerprofilesctl &>/dev/null; then
+	ctl="powerprofilesctl"
+elif command -v tlpctl &>/dev/null; then
+	ctl="tlpctl"
+	elsee
+	notify-send \
+		-a "Power Profile" \
+		-i error \
+		"Power Profile" \
+		"powerprofilesctl or tlpctl not found. Please install one of them to use this script."
+	exit 1
+fi
+
+current=$($ctl get)
+
+options="⚡ Performance|performance
+⚙️ Balanced|balanced
+🌿 Power Saving|power-saver"
+
+current_display=$(echo "$options" | awk -F'|' -v choice="$current" '$2==choice {print $1}')
+chosen=$(echo "$options" | awk -F'|' '{print $1}' | rofi -dmenu -case-smart -p "Current: $current_display" -theme "${dir}/${theme}.rasi")
+
+# Map chosen display name to actual value
+value=$(echo "$options" | awk -F'|' -v choice="$chosen" '$1==choice {print $2}')
+
+if [ -n "$chosen" ]; then
+	$ctl set $value
+	notify-send \
+		-a "Power Profile" \
+		-i info \
+		"Power Profile" \
+		"Changed from $current_display to $chosen"
+fi

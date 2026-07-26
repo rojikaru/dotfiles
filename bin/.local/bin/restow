@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Regenerates symlinks from ~/.dotfiles to $HOME, using stow.
+# This is useful for changing the structure of dotfiles repo.
+
+set -euo pipefail
+
+DOTS_DIR="$HOME/.dotfiles"
+
+while IFS= read -r dir; do
+	echo "Restowing $dir..."
+	stow -d "$DOTS_DIR" -t "$HOME" --no-folding -R "$dir"
+done < <(find "$DOTS_DIR" -mindepth 1 -maxdepth 1 -type d \
+	! -name 'packages' \
+	! -name 'scripts' \
+	! -name 'wallpapers' \
+	! -name '.git' \
+	-exec basename {} \;)
+
+echo "Done."

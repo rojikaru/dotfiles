@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+dir="$XDG_CONFIG_HOME/rofi/launchers/type-3"
+theme='style-3'
+SCRIPTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+CWD="$(pwd)"
+
+IFS=$'\n'
+cd "$WALLPAPER_DIR" || exit
+
+chosen=$(for a in *.jpg *.png *.; do echo -en "$a\0icon\x1f$a\n"; done | rofi -dmenu -p "Select Colorscheme" -theme "${dir}/${theme}.rasi")
+
+if [ -n "$chosen" ]; then
+	# call walset.sh with the chosen filename (including extension)
+	colorscheme-backend "$WALLPAPER_DIR/$chosen"
+fi
+
+cd "$CWD" || exit

@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+IS_CHANGING_SDDM_BG=0
+WALLPAPER_DIR="${WALLPAPER_DIR:-$HOME/Pictures/Wallpapers}"
+SDDM_THEME_DIR="/usr/share/sddm/themes/sddm-astronaut-theme"
+
+FILE=$1
+
+if [ -z "$FILE" ]; then
+	notify-send \
+		-a "Wallpaper" \
+		-i error \
+		"Wallpaper" \
+		"No images found in $WALLPAPER_DIR"
+	exit 1
+fi
+
+ext="${FILE##*.}"
+ext="${ext,,}"
+
+# A static still for everything that can't read video: hyprlock, the colorscheme
+# generators, and sddm. For static images this is just $FILE itself.
+POSTER="$(wallpaper-poster "$FILE")"
+
+# === Live desktop (awww) ===
+# awww handles static images and animated gifs natively, but not video, so feed
+# it the poster for mp4/webm/etc.
+case "$ext" in
+png | jpg | jpeg | webp | bmp | gif) DESKTOP="$FILE" ;;
+*) DESKTOP="$POSTER" ;;
+esac
+awww img "$DESKTOP" \
+	--transition-type any \
+	--transition-duration 1.4 \
+	--transition-fps 120 \
+	--transition-step 50
+
+# === Colorscheme (needs a still image) ===
+wallust run "$POSTER"
+matugen --source-color-index 0 image "$POSTER"
+pywal-cava
+
+# === hyprlock background (static only) ===
+cp "$POSTER" ~/.config/background
+
+# === sddm background ===
+if [ "$IS_CHANGING_SDDM_BG" -eq 1 ]; then
+	mkdir -p $SDDM_THEME_DIR/Backgrounds
+
+	sddm_extensions=("png" "jpg" "jpeg" "webp" "gif")
+	file_extension="${FILE##*.}"
+	metadata_file="$SDDM_THEME_DIR/metadata.desktop"
+	if [[ " ${sddm_extensions[*]} " == *" ${file_extension} "* ]]; then
+		active_config=$(grep -E '^ConfigFile=' "$metadata_file" | cut -d= -f2)
+		new_bg_file=Backgrounds/sddm-current.$file_extension
+
+		pkexec bash -c "
+        rm -f "$SDDM_THEME_DIR/Backgrounds/sddm-current."* &&
+        cp '$POSTER' '$SDDM_THEME_DIR/$new_bg_file' &&
+        sed -i 's|^Background=.*|Background=$new_bg_file|' '$metadata_file'
+      "
+	else
+		pkexec bash -c "
+      rm -f "$SDDM_THEME_DIR/Backgrounds/sddm-current."* &&
+      magick '$FILE' '$SDDM_THEME_DIR/Backgrounds/sddm-current.png' &&
+      sed -i 's|^Background=.*|Background=Backgrounds/sddm-current.png|' '$metadata_file'
+    "
+	fi
+
+	notify-send \
+		-a "Wallpaper" \
+		-i info \
+		"Wallpaper" \
+		"Background set for sddm"
+fi
+
+# Reload notification-center theme
+swaync-client -rs &
+
+notify-send \
+	-a "Wallpaper" \
+	-i info \
+	"Wallpaper" \
+	"Successfully changed to '$(basename "$FILE")'"
