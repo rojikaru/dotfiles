@@ -1,0 +1,147 @@
+/**
+ *    ┳┓┏┓┏┳┓┳┏┓┳┏┓┏┓┏┳┓┳┏┓┳┓
+ *    ┃┃┃┃ ┃ ┃┣ ┃┃ ┣┫ ┃ ┃┃┃┃┃
+ *    ┛┗┗┛ ┻ ┻┻ ┻┗┛┛┗ ┻ ┻┗┛┛┗
+ */
+
+@define-color text            @on_surface;
+@define-color text-dim        @on_surface_variant;
+@define-color surface         @surface_container_high;
+@define-color selected        @primary;
+@define-color hover           alpha(@selected, .4);
+@define-color urgent          @error;
+
+* {
+  all: unset;
+  color: @text;
+  font-size: 15px;
+  font-family: "JetBrainsMono Nerd Font";
+  transition: 200ms;
+}
+
+/* The transparent wrapper around each toast */
+.notification-row {
+  outline: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.notification-row .notification-background {
+  background: @surface;
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,.35);
+  border: 1px solid alpha(@selected, .25);
+  border-radius: 18px;
+  margin: 10px 14px;
+  padding: 0;
+}
+
+.notification-row .notification-background .notification {
+  padding: 4px;
+  border-radius: 16px;
+}
+
+.notification-row .notification-background .notification.critical {
+  border: 2px solid @urgent;
+}
+
+/* Content: give the body room and let it wrap to full text */
+.notification-row .notification-background .notification .notification-content {
+  margin: 10px 12px;
+  padding: 0;
+}
+
+.notification-content .summary {
+  color: @text;
+  font-weight: 800;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.notification-content .time {
+  color: @text-dim;
+  font-size: 0.8rem;
+}
+
+/* The body label: wrap, never clamp to a fixed height */
+.notification-content .body {
+  color: @text;
+  font-size: 0.9rem;
+  min-height: 0;
+}
+
+.image,
+.notification-content .image {
+  margin: 8px 14px 8px 2px;
+  border-radius: 12px;
+}
+
+/* Action buttons row */
+.notification-row .notification-background .notification > *:last-child > * {
+  min-height: 2.4em;
+}
+
+.notification-action {
+  border-radius: 10px;
+  background-color: alpha(@selected, .55);
+  color: @on_primary;
+  padding: 8px 12px;
+  margin: 6px 6px 4px 6px;
+  border: 1px solid transparent;
+}
+
+.notification-action:hover {
+  background-color: @selected;
+  color: @on_primary;
+}
+
+.notification-action:active {
+  background-color: @selected;
+}
+
+/* Close button */
+.notification-row .notification-background .close-button {
+  background: transparent;
+  color: @text-dim;
+  margin: 8px 8px 0 0;
+  padding: 4px;
+  border-radius: 8px;
+  min-width: 24px;
+  min-height: 24px;
+}
+
+.notification-row .notification-background .close-button:hover {
+  background-color: @urgent;
+  color: @on_error;
+}
+
+/* Inline reply */
+.notification .notification-content .inline-reply {
+  margin-top: 8px;
+}
+
+.inline-reply entry {
+  background: @surface_container_highest;
+  color: @text;
+  border: 1px solid alpha(@selected, .4);
+  border-radius: 10px;
+  padding: 6px 10px;
+}
+
+.inline-reply button {
+  background: alpha(@selected, .55);
+  color: @on_primary;
+  border-radius: 10px;
+  padding: 6px 10px;
+  margin-left: 6px;
+}
+
+/* Progress bars */
+.notification progress {
+  border-radius: 10px;
+  background-color: alpha(@text-dim, .3);
+}
+.notification progress, trough highlight {
+  background-color: @selected;
+  border-radius: 10px;
+}

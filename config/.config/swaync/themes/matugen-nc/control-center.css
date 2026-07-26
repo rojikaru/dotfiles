@@ -1,0 +1,351 @@
+/***
+ *    ┏┓┏┓┳┓┏┳┓┳┓┏┓┓   ┏┓┏┓┳┓┏┳┓┏┓┳┓
+ *    ┃ ┃┃┃┃ ┃ ┣┫┃┃┃ ━━┃ ┣ ┃┃ ┃ ┣ ┣┫
+ *    ┗┛┗┛┛┗ ┻ ┛┗┗┛┗┛  ┗┛┗┛┛┗ ┻ ┗┛┛┗
+ */
+
+@define-color text                  @on_surface;
+@define-color text-dim              @on_surface_variant;
+@define-color background-alt        @surface_container_high;
+@define-color card                  @surface_container_highest;
+@define-color selected              @primary;
+@define-color accent                @tertiary;
+@define-color text-alt              @on_primary;
+@define-color hover                 alpha(@primary, .35);
+@define-color urgent                @error;
+
+:root {
+  --mpris-album-art-icon-size: 80px;
+}
+
+* {
+  color: @text;
+  all: unset;
+  font-size: 15px;
+  font-family: "JetBrainsMono Nerd Font";
+  transition: 200ms;
+}
+
+.blank-window {
+  background: transparent;
+}
+
+/* CONTROL CENTER ------------------------------------------------------------ */
+
+.control-center {
+  background: @surface_container;
+  border-radius: 16px;
+  border: 1px solid alpha(@selected, .2);
+  box-shadow: 2px 5px 16px 0 rgba(0,0,0,.4);
+  margin: 16px;
+  padding: 14px;
+}
+
+/* Notifications list ------------------------------------------------------- */
+.control-center .notification-row .notification-background,
+.control-center .notification-row .notification-background .notification {
+  background-color: @card;
+  border-radius: 16px;
+  margin: 6px 2px;
+  padding: 2px;
+}
+
+.control-center .notification-row .notification-background .notification.critical {
+  border: 2px solid @urgent;
+}
+
+.control-center .notification-row .notification-background .notification .notification-content {
+  margin: 10px 12px;
+  padding: 0;
+}
+
+/* Let the body show full text instead of clamping */
+.notification-content .summary {
+  font-weight: 800;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.notification-content .time {
+  color: @text-dim;
+  font-size: 0.8rem;
+}
+
+.notification-content .body {
+  color: @text;
+  font-size: 0.9rem;
+  min-height: 0;
+}
+
+.notification-content .image {
+  margin: 8px 14px 8px 2px;
+  border-radius: 12px;
+}
+
+/* Action buttons */
+.control-center .notification-row .notification-background .notification > *:last-child > * {
+  min-height: 2.4em;
+}
+
+.control-center .notification-action {
+  background: alpha(@selected, .55);
+  color: @text-alt;
+  border-radius: 10px;
+  padding: 8px 12px;
+  margin: 6px 6px 4px 6px;
+}
+
+.control-center .notification-action:hover {
+  background: @selected;
+}
+
+/* Close button */
+.control-center .notification-row .notification-background .close-button {
+  background: transparent;
+  color: @text-dim;
+  border-radius: 8px;
+  margin: 8px 8px 0 0;
+  padding: 4px;
+  min-width: 24px;
+  min-height: 24px;
+}
+
+.control-center .notification-row .notification-background .close-button:hover {
+  background-color: @urgent;
+  color: @on_error;
+}
+
+/* Grouped / collapsed notifications --------------------------------------- */
+
+.notification-group {
+  margin: 2px 6px;
+}
+
+/* Stacked-behind (collapsed) notifications: keep them solid, not washed out */
+.notification-group:not(.collapsed) .notification-row,
+.notification-group.collapsed .notification-row {
+  opacity: 1;
+}
+
+.notification-group .notification-row:not(:first-child) .notification-background {
+  background-color: alpha(@card, .85);
+}
+
+.notification-group-headers {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: @text;
+  letter-spacing: 1px;
+}
+
+.notification-group-icon {
+  color: @accent;
+}
+
+.notification-group-collapse-button,
+.notification-group-close-all-button {
+  background: transparent;
+  color: @text-dim;
+  margin: 4px;
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+
+.notification-group-collapse-button:hover,
+.notification-group-close-all-button:hover {
+  background: @hover;
+  color: @text;
+}
+
+/* WIDGETS ------------------------------------------------------------------ */
+
+.widget-label {
+  margin: 6px 4px;
+}
+.widget-label > label {
+  color: @accent;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.widget-title {
+  color: @text;
+  font-size: 1.15em;
+  margin: 8px 6px;
+}
+
+.widget-title button {
+  background: @card;
+  color: @text;
+  border-radius: 8px;
+  padding: 4px 16px;
+}
+
+.widget-title button:hover {
+  background-color: @hover;
+}
+
+.widget-title button:active {
+  background-color: @selected;
+  color: @text-alt;
+}
+
+/* Do not disturb */
+.widget-dnd {
+  color: @text;
+  margin: 8px 6px;
+  font-size: 1.1rem;
+}
+
+.widget-dnd > switch {
+  background: @card;
+  border-radius: 12px;
+  box-shadow: none;
+  padding: 2px;
+  min-width: 56px;
+}
+
+.widget-dnd > switch:checked {
+  background: @selected;
+}
+
+.widget-dnd > switch slider {
+  background: @text;
+  border-radius: 10px;
+  min-width: 22px;
+  min-height: 22px;
+}
+
+.widget-dnd > switch:checked slider {
+  background: @text-alt;
+}
+
+/* Buttons grid */
+.widget-buttons-grid {
+  font-size: x-large;
+  padding: 10px 6px;
+  margin: 8px 4px;
+  border-radius: 16px;
+  background: @card;
+  color: @text;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button {
+  margin: 4px 8px;
+  padding: 8px 12px;
+  background: transparent;
+  border-radius: 10px;
+  color: @text;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+  background: @hover;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked {
+  background: @selected;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked label {
+  color: @text-alt;
+}
+
+.widget-mpris {
+  background: @card;
+  border-radius: 16px;
+  margin: 8px 4px;
+}
+
+/* Music player */
+.widget-mpris button {
+  color: @text;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.widget-mpris button:hover {
+  background: @hover;
+}
+
+.widget-mpris-player {
+  padding: 12px;
+  margin: 8px;
+  border-radius: 14px;
+}
+
+.widget-mpris-player > box {
+  background-color: alpha(@surface, .45);
+  padding: 6px 10px;
+  backdrop-filter: blur(2px);
+}
+
+.widget-mpris-album-art {
+  margin: 8px 12px;
+  background-size: cover;
+  
+  border-radius: 14px;
+  -gtk-icon-size: var(--mpris-album-art-icon-size);
+}
+
+.widget-mpris-title {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.widget-mpris-subtitle {
+  font-size: 0.85rem;
+  color: @text-dim;
+}
+
+.widget-mpris button label,
+.widget-mpris button image {
+  color: @text;
+}
+
+/* Volume & Backlight sliders */
+.widget-volume,
+.widget-backlight {
+  background: @card;
+  color: @text;
+  padding: 8px 12px;
+  margin: 8px 4px;
+  border-radius: 12px;
+}
+
+scrollbar > range > trough {
+  background: alpha(@text-dim, .25);
+  border-radius: 12px;
+  min-height: 8px;
+}
+
+scrollbar > range > trough > highlight {
+  background: @selected;
+  border-radius: 12px;
+}
+
+scrollbar > range > trough > slider {
+  background: @text;
+  border-radius: 4px;
+  min-height: 16px;
+  min-width: 6px;
+  margin: -4px;
+}
+
+scale > trough > slider {
+  background: @text;
+  border-radius: 9999px;
+  margin-left: -4px;
+  min-height: 8px;
+  min-width: 8px;
+}
+
+scale > trough {
+  background: alpha(@text-dim, .25);
+  border-radius: 12px;
+  min-height: 6px;
+}
+
+scale > trough > highlight {
+  background: @selected;
+  border-radius: 12px;
+}
