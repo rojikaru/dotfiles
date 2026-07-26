@@ -1,0 +1,7 @@
+# Compression
+
+compress() { tar -czf "${1%/}.tar.gz" "${1%/}"; }
+alias decompress="tar -xzf"
+
+zcompress() { tar --zstd -cf "${1%/}.tar.zst" "${1%/}"; }
+alias zdecompress="tar --zstd -xf"

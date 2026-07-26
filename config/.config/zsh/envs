@@ -1,0 +1,30 @@
+# Bun globals
+export PATH="$HOME/.cache/.bun/bin:$PATH"
+
+# Pnpm globals
+export PATH="$HOME/.local/share/pnpm/bin:$PATH"
+
+# Rice scripts and other one-offs
+export PATH="$HOME/.local/bin:$PATH"
+
+# Color man pages with bat
+export BAT_THEME=ansi
+export MANROFFOPT="-c"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+# Clean up dotfile clutter
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+export GOPATH="$XDG_DATA_HOME/go"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
+export WINEPREFIX="$XDG_DATA_HOME/wine"
+export DOTNET_CLI_HOME="$XDG_DATA_HOME/dotnet"
+export NUGET_PACKAGES="$XDG_DATA_HOME/nuget"
+
+export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_repl_history"
+export LESSHISTFILE="$XDG_STATE_HOME/less/history"
+
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"

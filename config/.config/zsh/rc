@@ -1,0 +1,6 @@
+source ~/.config/zsh/aliases
+source ~/.config/zsh/bindings
+source ~/.config/zsh/envs
+source ~/.config/zsh/init
+
+for f in ~/.config/zsh/fns/*; do source "$f"; done
