@@ -57,9 +57,10 @@ local launcher_binds = {
 	{ "ALT + W", "waybar-menu" },
 	{ "SHIFT + S", "screenshot area" },
 	{ "SHIFT + E", "rofimoji-styled" },
+	{ "SHIFT + X", "projectpick" },
 
 	-- Copilot button on keyboard
-	{ "SHIFT + F23", "powermenu" },
+	{ "SHIFT + F23", "projectpick" },
 }
 apply_binds("pkill rofi ||", launcher_binds)
 

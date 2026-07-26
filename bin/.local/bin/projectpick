@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# Pick a project to work on using a default editor.
+# To add any additional project directories, 
+# add them to the PROJECT_PATHS array below.
+#
+# Assumes terminal editor (like vim, nvim or emacs -nw) & spawns a new terminal.
+# To change that behavior, toggle IS_TERMINAL variable below.
+
+set -euo pipefail
+
+IS_TERMINAL=${IS_TERMINAL:-true}
+LAUNCHER=${LAUNCHER:-type-3}
+THEME="${THEME:-style-5}"
+
+source "$XDG_CONFIG_HOME"/user-dirs.dirs
+XDG_PROJECTS_DIR="${XDG_PROJECTS_DIR:-$HOME/Projects}"
+
+DOTS_DIR="${DOTS_DIR:-$HOME/.dotfiles}"
+PROJECT_PATHS=("$DOTS_DIR" "$XDG_PROJECTS_DIR"/*)
+
+declare -A PROJECT_MAP
+for path in "${PROJECT_PATHS[@]}"; do
+	PROJECT_MAP["$(basename "$path")"]="$path"
+done
+
+CHOSEN_PROJECT=$(
+	printf '%s\n' "${!PROJECT_MAP[@]}" |
+		rofi -dmenu -p "Pick a project to work on" \
+			-theme "$XDG_CONFIG_HOME/rofi/launchers/${LAUNCHER}/${THEME}.rasi"
+)
+
+if [ -z "$CHOSEN_PROJECT" ]; then
+	notify-send "Project Picker" \
+		-i error \
+		-a "Project Picker" \
+		"No project selected."
+	exit 1
+fi
+
+PROJECT_PATH="${PROJECT_MAP[$CHOSEN_PROJECT]}"
+if [ "$IS_TERMINAL" = true ]; then
+	$TERMINAL -e $EDITOR "$PROJECT_PATH"
+else
+	$EDITOR "$PROJECT_PATH"
+fi
