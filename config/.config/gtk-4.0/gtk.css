@@ -1,0 +1,2 @@
+/* Pull in the matugen-generated palette on top of the active theme. */
+@import url("colors.css");
