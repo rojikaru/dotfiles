@@ -1,0 +1,11 @@
+/**
+ * Base rofi configuration (auto-loaded; launchers add their own -theme on top).
+ * Route launched applications through `uwsm app --` so each gets its own
+ * systemd scope in the graphical session (proper cleanup on logout, correct
+ * environment, resource accounting). Applies to both `run` and `drun`.
+ */
+
+configuration {
+    run-command:       "uwsm app -- {cmd}";
+    run-shell-command: "uwsm app -- {terminal} -e {cmd}";
+}

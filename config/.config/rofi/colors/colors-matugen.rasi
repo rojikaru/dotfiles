@@ -1,0 +1,529 @@
+* {
+
+
+    background: #12140eff;
+    background-75: #12140ebf;
+    background-50: #12140e80;
+    background-25: #12140e40;
+    background-10: #12140e1a;
+
+
+    blue: #96ccf8ff;
+    blue-75: #96ccf8bf;
+    blue-50: #96ccf880;
+    blue-25: #96ccf840;
+    blue-10: #96ccf81a;
+
+
+    blue-container: #004b70ff;
+    blue-container-75: #004b70bf;
+    blue-container-50: #004b7080;
+    blue-container-25: #004b7040;
+    blue-container-10: #004b701a;
+
+
+    blue-source: #3f597bff;
+    blue-source-75: #3f597bbf;
+    blue-source-50: #3f597b80;
+    blue-source-25: #3f597b40;
+    blue-source-10: #3f597b1a;
+
+
+    blue-value: #3f597bff;
+    blue-value-75: #3f597bbf;
+    blue-value-50: #3f597b80;
+    blue-value-25: #3f597b40;
+    blue-value-10: #3f597b1a;
+
+
+    error: #ffb4abff;
+    error-75: #ffb4abbf;
+    error-50: #ffb4ab80;
+    error-25: #ffb4ab40;
+    error-10: #ffb4ab1a;
+
+
+    error-container: #93000aff;
+    error-container-75: #93000abf;
+    error-container-50: #93000a80;
+    error-container-25: #93000a40;
+    error-container-10: #93000a1a;
+
+
+    inverse-on-surface: #2f312aff;
+    inverse-on-surface-75: #2f312abf;
+    inverse-on-surface-50: #2f312a80;
+    inverse-on-surface-25: #2f312a40;
+    inverse-on-surface-10: #2f312a1a;
+
+
+    inverse-primary: #4d662aff;
+    inverse-primary-75: #4d662abf;
+    inverse-primary-50: #4d662a80;
+    inverse-primary-25: #4d662a40;
+    inverse-primary-10: #4d662a1a;
+
+
+    inverse-surface: #e2e3d8ff;
+    inverse-surface-75: #e2e3d8bf;
+    inverse-surface-50: #e2e3d880;
+    inverse-surface-25: #e2e3d840;
+    inverse-surface-10: #e2e3d81a;
+
+
+    on-background: #e2e3d8ff;
+    on-background-75: #e2e3d8bf;
+    on-background-50: #e2e3d880;
+    on-background-25: #e2e3d840;
+    on-background-10: #e2e3d81a;
+
+
+    on-blue: #00344fff;
+    on-blue-75: #00344fbf;
+    on-blue-50: #00344f80;
+    on-blue-25: #00344f40;
+    on-blue-10: #00344f1a;
+
+
+    on-blue-container: #cae6ffff;
+    on-blue-container-75: #cae6ffbf;
+    on-blue-container-50: #cae6ff80;
+    on-blue-container-25: #cae6ff40;
+    on-blue-container-10: #cae6ff1a;
+
+
+    on-error: #690005ff;
+    on-error-75: #690005bf;
+    on-error-50: #69000580;
+    on-error-25: #69000540;
+    on-error-10: #6900051a;
+
+
+    on-error-container: #ffdad6ff;
+    on-error-container-75: #ffdad6bf;
+    on-error-container-50: #ffdad680;
+    on-error-container-25: #ffdad640;
+    on-error-container-10: #ffdad61a;
+
+
+    on-primary: #203600ff;
+    on-primary-75: #203600bf;
+    on-primary-50: #20360080;
+    on-primary-25: #20360040;
+    on-primary-10: #2036001a;
+
+
+    on-primary-container: #ceeda2ff;
+    on-primary-container-75: #ceeda2bf;
+    on-primary-container-50: #ceeda280;
+    on-primary-container-25: #ceeda240;
+    on-primary-container-10: #ceeda21a;
+
+
+    on-primary-fixed: #112000ff;
+    on-primary-fixed-75: #112000bf;
+    on-primary-fixed-50: #11200080;
+    on-primary-fixed-25: #11200040;
+    on-primary-fixed-10: #1120001a;
+
+
+    on-primary-fixed-variant: #364e15ff;
+    on-primary-fixed-variant-75: #364e15bf;
+    on-primary-fixed-variant-50: #364e1580;
+    on-primary-fixed-variant-25: #364e1540;
+    on-primary-fixed-variant-10: #364e151a;
+
+
+    on-red: #561f0eff;
+    on-red-75: #561f0ebf;
+    on-red-50: #561f0e80;
+    on-red-25: #561f0e40;
+    on-red-10: #561f0e1a;
+
+
+    on-red-container: #ffdbd0ff;
+    on-red-container-75: #ffdbd0bf;
+    on-red-container-50: #ffdbd080;
+    on-red-container-25: #ffdbd040;
+    on-red-container-10: #ffdbd01a;
+
+
+    on-secondary: #2a331eff;
+    on-secondary-75: #2a331ebf;
+    on-secondary-50: #2a331e80;
+    on-secondary-25: #2a331e40;
+    on-secondary-10: #2a331e1a;
+
+
+    on-secondary-container: #dce7c7ff;
+    on-secondary-container-75: #dce7c7bf;
+    on-secondary-container-50: #dce7c780;
+    on-secondary-container-25: #dce7c740;
+    on-secondary-container-10: #dce7c71a;
+
+
+    on-secondary-fixed: #161e0bff;
+    on-secondary-fixed-75: #161e0bbf;
+    on-secondary-fixed-50: #161e0b80;
+    on-secondary-fixed-25: #161e0b40;
+    on-secondary-fixed-10: #161e0b1a;
+
+
+    on-secondary-fixed-variant: #414a33ff;
+    on-secondary-fixed-variant-75: #414a33bf;
+    on-secondary-fixed-variant-50: #414a3380;
+    on-secondary-fixed-variant-25: #414a3340;
+    on-secondary-fixed-variant-10: #414a331a;
+
+
+    on-success: #173807ff;
+    on-success-75: #173807bf;
+    on-success-50: #17380780;
+    on-success-25: #17380740;
+    on-success-10: #1738071a;
+
+
+    on-success-container: #c5efabff;
+    on-success-container-75: #c5efabbf;
+    on-success-container-50: #c5efab80;
+    on-success-container-25: #c5efab40;
+    on-success-container-10: #c5efab1a;
+
+
+    on-surface: #e2e3d8ff;
+    on-surface-75: #e2e3d8bf;
+    on-surface-50: #e2e3d880;
+    on-surface-25: #e2e3d840;
+    on-surface-10: #e2e3d81a;
+
+
+    on-surface-variant: #c5c8b9ff;
+    on-surface-variant-75: #c5c8b9bf;
+    on-surface-variant-50: #c5c8b980;
+    on-surface-variant-25: #c5c8b940;
+    on-surface-variant-10: #c5c8b91a;
+
+
+    on-tertiary: #003734ff;
+    on-tertiary-75: #003734bf;
+    on-tertiary-50: #00373480;
+    on-tertiary-25: #00373440;
+    on-tertiary-10: #0037341a;
+
+
+    on-tertiary-container: #bcece7ff;
+    on-tertiary-container-75: #bcece7bf;
+    on-tertiary-container-50: #bcece780;
+    on-tertiary-container-25: #bcece740;
+    on-tertiary-container-10: #bcece71a;
+
+
+    on-tertiary-fixed: #00201eff;
+    on-tertiary-fixed-75: #00201ebf;
+    on-tertiary-fixed-50: #00201e80;
+    on-tertiary-fixed-25: #00201e40;
+    on-tertiary-fixed-10: #00201e1a;
+
+
+    on-tertiary-fixed-variant: #1f4e4bff;
+    on-tertiary-fixed-variant-75: #1f4e4bbf;
+    on-tertiary-fixed-variant-50: #1f4e4b80;
+    on-tertiary-fixed-variant-25: #1f4e4b40;
+    on-tertiary-fixed-variant-10: #1f4e4b1a;
+
+
+    on-yellow: #2c3400ff;
+    on-yellow-75: #2c3400bf;
+    on-yellow-50: #2c340080;
+    on-yellow-25: #2c340040;
+    on-yellow-10: #2c34001a;
+
+
+    on-yellow-container: #ddea97ff;
+    on-yellow-container-75: #ddea97bf;
+    on-yellow-container-50: #ddea9780;
+    on-yellow-container-25: #ddea9740;
+    on-yellow-container-10: #ddea971a;
+
+
+    outline: #8f9285ff;
+    outline-75: #8f9285bf;
+    outline-50: #8f928580;
+    outline-25: #8f928540;
+    outline-10: #8f92851a;
+
+
+    outline-variant: #44483dff;
+    outline-variant-75: #44483dbf;
+    outline-variant-50: #44483d80;
+    outline-variant-25: #44483d40;
+    outline-variant-10: #44483d1a;
+
+
+    primary: #b3d089ff;
+    primary-75: #b3d089bf;
+    primary-50: #b3d08980;
+    primary-25: #b3d08940;
+    primary-10: #b3d0891a;
+
+
+    primary-container: #364e15ff;
+    primary-container-75: #364e15bf;
+    primary-container-50: #364e1580;
+    primary-container-25: #364e1540;
+    primary-container-10: #364e151a;
+
+
+    primary-fixed: #ceeda2ff;
+    primary-fixed-75: #ceeda2bf;
+    primary-fixed-50: #ceeda280;
+    primary-fixed-25: #ceeda240;
+    primary-fixed-10: #ceeda21a;
+
+
+    primary-fixed-dim: #b3d089ff;
+    primary-fixed-dim-75: #b3d089bf;
+    primary-fixed-dim-50: #b3d08980;
+    primary-fixed-dim-25: #b3d08940;
+    primary-fixed-dim-10: #b3d0891a;
+
+
+    red: #ffb59fff;
+    red-75: #ffb59fbf;
+    red-50: #ffb59f80;
+    red-25: #ffb59f40;
+    red-10: #ffb59f1a;
+
+
+    red-container: #723522ff;
+    red-container-75: #723522bf;
+    red-container-50: #72352280;
+    red-container-25: #72352240;
+    red-container-10: #7235221a;
+
+
+    red-source: #9a4141ff;
+    red-source-75: #9a4141bf;
+    red-source-50: #9a414180;
+    red-source-25: #9a414140;
+    red-source-10: #9a41411a;
+
+
+    red-value: #9a4141ff;
+    red-value-75: #9a4141bf;
+    red-value-50: #9a414180;
+    red-value-25: #9a414140;
+    red-value-10: #9a41411a;
+
+
+    scrim: #000000ff;
+    scrim-75: #000000bf;
+    scrim-50: #00000080;
+    scrim-25: #00000040;
+    scrim-10: #0000001a;
+
+
+    secondary: #c0cbacff;
+    secondary-75: #c0cbacbf;
+    secondary-50: #c0cbac80;
+    secondary-25: #c0cbac40;
+    secondary-10: #c0cbac1a;
+
+
+    secondary-container: #414a33ff;
+    secondary-container-75: #414a33bf;
+    secondary-container-50: #414a3380;
+    secondary-container-25: #414a3340;
+    secondary-container-10: #414a331a;
+
+
+    secondary-fixed: #dce7c7ff;
+    secondary-fixed-75: #dce7c7bf;
+    secondary-fixed-50: #dce7c780;
+    secondary-fixed-25: #dce7c740;
+    secondary-fixed-10: #dce7c71a;
+
+
+    secondary-fixed-dim: #c0cbacff;
+    secondary-fixed-dim-75: #c0cbacbf;
+    secondary-fixed-dim-50: #c0cbac80;
+    secondary-fixed-dim-25: #c0cbac40;
+    secondary-fixed-dim-10: #c0cbac1a;
+
+
+    shadow: #000000ff;
+    shadow-75: #000000bf;
+    shadow-50: #00000080;
+    shadow-25: #00000040;
+    shadow-10: #0000001a;
+
+
+    source-color: #88a95bff;
+    source-color-75: #88a95bbf;
+    source-color-50: #88a95b80;
+    source-color-25: #88a95b40;
+    source-color-10: #88a95b1a;
+
+
+    success: #aad291ff;
+    success-75: #aad291bf;
+    success-50: #aad29180;
+    success-25: #aad29140;
+    success-10: #aad2911a;
+
+
+    success-container: #2e4f1cff;
+    success-container-75: #2e4f1cbf;
+    success-container-50: #2e4f1c80;
+    success-container-25: #2e4f1c40;
+    success-container-10: #2e4f1c1a;
+
+
+    success-source: #358738ff;
+    success-source-75: #358738bf;
+    success-source-50: #35873880;
+    success-source-25: #35873840;
+    success-source-10: #3587381a;
+
+
+    success-value: #358738ff;
+    success-value-75: #358738bf;
+    success-value-50: #35873880;
+    success-value-25: #35873840;
+    success-value-10: #3587381a;
+
+
+    surface: #12140eff;
+    surface-75: #12140ebf;
+    surface-50: #12140e80;
+    surface-25: #12140e40;
+    surface-10: #12140e1a;
+
+
+    surface-bright: #383a32ff;
+    surface-bright-75: #383a32bf;
+    surface-bright-50: #383a3280;
+    surface-bright-25: #383a3240;
+    surface-bright-10: #383a321a;
+
+
+    surface-container: #1e201aff;
+    surface-container-75: #1e201abf;
+    surface-container-50: #1e201a80;
+    surface-container-25: #1e201a40;
+    surface-container-10: #1e201a1a;
+
+
+    surface-container-high: #282b24ff;
+    surface-container-high-75: #282b24bf;
+    surface-container-high-50: #282b2480;
+    surface-container-high-25: #282b2440;
+    surface-container-high-10: #282b241a;
+
+
+    surface-container-highest: #33362eff;
+    surface-container-highest-75: #33362ebf;
+    surface-container-highest-50: #33362e80;
+    surface-container-highest-25: #33362e40;
+    surface-container-highest-10: #33362e1a;
+
+
+    surface-container-low: #1a1c16ff;
+    surface-container-low-75: #1a1c16bf;
+    surface-container-low-50: #1a1c1680;
+    surface-container-low-25: #1a1c1640;
+    surface-container-low-10: #1a1c161a;
+
+
+    surface-container-lowest: #0d0f09ff;
+    surface-container-lowest-75: #0d0f09bf;
+    surface-container-lowest-50: #0d0f0980;
+    surface-container-lowest-25: #0d0f0940;
+    surface-container-lowest-10: #0d0f091a;
+
+
+    surface-dim: #12140eff;
+    surface-dim-75: #12140ebf;
+    surface-dim-50: #12140e80;
+    surface-dim-25: #12140e40;
+    surface-dim-10: #12140e1a;
+
+
+    surface-tint: #b3d089ff;
+    surface-tint-75: #b3d089bf;
+    surface-tint-50: #b3d08980;
+    surface-tint-25: #b3d08940;
+    surface-tint-10: #b3d0891a;
+
+
+    surface-variant: #44483dff;
+    surface-variant-75: #44483dbf;
+    surface-variant-50: #44483d80;
+    surface-variant-25: #44483d40;
+    surface-variant-10: #44483d1a;
+
+
+    tertiary: #a0d0cbff;
+    tertiary-75: #a0d0cbbf;
+    tertiary-50: #a0d0cb80;
+    tertiary-25: #a0d0cb40;
+    tertiary-10: #a0d0cb1a;
+
+
+    tertiary-container: #1f4e4bff;
+    tertiary-container-75: #1f4e4bbf;
+    tertiary-container-50: #1f4e4b80;
+    tertiary-container-25: #1f4e4b40;
+    tertiary-container-10: #1f4e4b1a;
+
+
+    tertiary-fixed: #bcece7ff;
+    tertiary-fixed-75: #bcece7bf;
+    tertiary-fixed-50: #bcece780;
+    tertiary-fixed-25: #bcece740;
+    tertiary-fixed-10: #bcece71a;
+
+
+    tertiary-fixed-dim: #a0d0cbff;
+    tertiary-fixed-dim-75: #a0d0cbbf;
+    tertiary-fixed-dim-50: #a0d0cb80;
+    tertiary-fixed-dim-25: #a0d0cb40;
+    tertiary-fixed-dim-10: #a0d0cb1a;
+
+
+    yellow: #c1ce7dff;
+    yellow-75: #c1ce7dbf;
+    yellow-50: #c1ce7d80;
+    yellow-25: #c1ce7d40;
+    yellow-10: #c1ce7d1a;
+
+
+    yellow-container: #414b08ff;
+    yellow-container-75: #414b08bf;
+    yellow-container-50: #414b0880;
+    yellow-container-25: #414b0840;
+    yellow-container-10: #414b081a;
+
+
+    yellow-source: #c0ba17ff;
+    yellow-source-75: #c0ba17bf;
+    yellow-source-50: #c0ba1780;
+    yellow-source-25: #c0ba1740;
+    yellow-source-10: #c0ba171a;
+
+
+    yellow-value: #c0ba17ff;
+    yellow-value-75: #c0ba17bf;
+    yellow-value-50: #c0ba1780;
+    yellow-value-25: #c0ba1740;
+    yellow-value-10: #c0ba171a;
+
+}
+* {
+    background:     #1e201a;
+    background-alt: #12140e;
+    foreground:     #e2e3d8;
+    /*****-----  selected:       #b3d089; -----*****/
+    active:         #c0cbac;
+    urgent:         #ffb4ab;
+}
