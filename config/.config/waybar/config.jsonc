@@ -1,0 +1,202 @@
+{
+  "layer": "top",
+  "font": "JetBrainsMono Nerd Font 10",
+  "margin": "13 8 5 8",
+  "reload_style_on_change": true,
+  "on-sigusr1": "hide",
+  "on-sigusr2": "show",
+  "modules-left": [
+    "custom/nix",
+    "clock",
+    "network",
+    "bluetooth",
+    "hyprland/window"
+  ],
+  "modules-center": ["backlight", "hyprland/workspaces", "pulseaudio"],
+  "modules-right": [
+    "cava",
+    "group/sysstats",
+    "battery",
+    "custom/swaync",
+    "tray"
+  ],
+  "group/sysstats": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "not-memory",
+      "transition-left-to-right": false
+    },
+    "modules": ["cpu", "memory", "idle_inhibitor"]
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "cpu": {
+    "interval": 10,
+    "format": "{usage}% ",
+    "tooltip": false
+  },
+  "memory": {
+    "interval": 30,
+    "format": "{}% ",
+    "tooltip-format": "{used:0.1f}G/{total:0.1f}G"
+  },
+  "custom/nix": {
+    "format": "󰣇",
+    "tooltip": "false",
+    "on-click": "pkill rofi || powermenu"
+  },
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-icons": ["", "", "", "", ""],
+    "events": {
+      "on-discharging-warning": "notify-send -a 'Battery' -u normal 'Battery' 'Low Charge Level!'",
+      "on-discharging-critical": "notify-send -a 'Battery' -u critical 'Battery' 'Very Low Charge Level!'",
+      "on-charging-100": "notify-send -a 'Battery' -u normal 'Battery' 'Charge Full!'"
+    },
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+
+    "format-charging": "{capacity}% ",
+    "on-click": "battery-profile-toggle"
+  },
+  "clock": {
+    "format": "{:%H:%M} ",
+    "format-alt": "{:%A, %B %d, %Y (%R:%S)} ",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "interval": 1,
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "format-icons": {
+      "10": "0"
+    },
+    "persistent-workspaces": {
+      "*": 5
+    }
+  },
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 30,
+    "separate-outputs": true
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-muted": "",
+    "format-icons": {
+      "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
+      "alsa_output.pci-0000_00_1f.3.analog-stereo-muted": "",
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "phone-muted": "",
+      "portable": "",
+      "car": "",
+      "default": ["", ""]
+    },
+    "scroll-step": 1,
+    "on-click": "$TERMINAL -e wiremix",
+    "ignored-sinks": ["Easy Effects Sink"]
+  },
+  "bluetooth": {
+    "format": "{device_alias} 󰂯",
+    "format-connected": "{device_alias} 󰂯",
+    "format-connected-battery": "{device_alias} {device_battery_percentage}% 󰂯",
+    "format-disabled": "󰂲",
+    "format-off": "󰂲",
+    "format-on": "󰂯",
+    "format-no-controller": "",
+    "tooltip-format": "{status}",
+    "tooltip-format-connected": "{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "on-click": "$TERMINAL -e bluetui"
+  },
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": "{essid} ",
+    "format-ethernet": "{ipaddr}/{cidr} 󰊗",
+    "format-disconnected": "Disconnected ",
+    "tooltip-format": "{ifname} via {gwaddr} 󰊗",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-ethernet": "{ifname} ",
+    "tooltip-format-disconnected": "Disconnected ",
+    "max-length": 50,
+    "on-click": "$TERMINAL -e impala"
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{percent}% {icon}",
+    "format-icons": ["", ""],
+    "format-alt": "{percent}% {icon}",
+    "on-click": "brightnessctl set 5%+",
+    "on-click-right": "brightnessctl set --min-value=1 5%-",
+    "on-scroll-up": "brightnessctl set 1%+",
+    "on-scroll-down": "brightnessctl set --min-value=1 1%-",
+    "scroll-step": 1,
+    "tooltip": false
+  },
+  "tray": {
+    "icon-size": 20,
+    "spacing": 10,
+    "icons": {
+      "blueman": "bluetooth"
+    }
+  },
+  "cava": {
+    "cava_config": "$XDG_CONFIG_HOME/cava/config",
+    "framerate": 60,
+    "autosens": 1,
+    "sensitivity": 2,
+    "bars": 20,
+    "sleep_timer": 4,
+    "lower_cutoff_freq": 50,
+    "higher_cutoff_freq": 10000,
+    "hide_on_silence": true,
+    "method": "pipewire",
+    "source": "auto",
+    "stereo": true,
+    "reverse": false,
+    "bar_delimiter": 0,
+    "input_delay": 0.5,
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    "actions": {
+      "on-click-right": "mode"
+    }
+  },
+  "custom/swaync": {
+    "format": "{icon}",
+    "format-icons": {
+      "default": "󰂚"
+    },
+    "tooltip": false,
+    "on-click": "swaync-client -t"
+  }
+}
