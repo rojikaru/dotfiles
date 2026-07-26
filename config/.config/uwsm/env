@@ -1,0 +1,29 @@
+# Environment Variables
+export PATH="$HOME/.local/bin:$PATH"
+export EDITOR="nvim"
+export SUDO_EDITOR="$EDITOR"
+export TERMINAL="kitty"
+
+# Wallpaper directory — single source of truth for the wall* / colorscheme scripts.
+export WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
+
+# Graphics & Rendering
+export AQ_DRM_DEVICES=/dev/dri/intel-card:/dev/dri/nvidia-card
+export WLR_RENDER_DRM_DEVICE=/dev/dri/intel-card
+export __GLX_VENDOR_LIBRARY_NAME=mesa
+export GSK_RENDERER=gl
+
+# Gaming
+export MANGOHUD=1
+
+# Theming
+export GTK_THEME=Adwaita:dark
+export XCURSOR_THEME=breeze
+export XCURSOR_SIZE=24
+export XDG_MENU_PREFIX=arch-
+export QT_QPA_PLATFORMTHEME=qt6ct
+
+# KVM / software rendering fallback
+export WLR_NO_HARDWARE_CURSORS="1"
+export WLR_RENDERER_ALLOW_SOFTWARE="1"
+
