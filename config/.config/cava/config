@@ -1,0 +1,22 @@
+# This file is genreated from the command ~/.local/bin/pywal-cava 
+# Change them inside the shell script, not here.
+
+[general]
+live-config = 1
+bar_spacing = 0
+
+[color]
+background = default
+gradient = 1
+gradient_count = 8
+gradient_color_1 = '#756463'
+gradient_color_2 = '#7A7966'
+gradient_color_3 = '#A06757'
+gradient_color_4 = '#658388'
+gradient_color_5 = '#778839'
+gradient_color_6 = '#B0B493'
+gradient_color_7 = '#CFD1C1'
+gradient_color_8 = '#919287'
+
+[output]
+method = noncurses
