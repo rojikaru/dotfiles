@@ -10,12 +10,14 @@ jetbrains-toolbox
 limine-mkinitcpio-hook
 limine-snapper-sync
 localsend-bin
+minecraft-launcher
 ngrok
 parsec-bin
 paru
 postman-bin
 python-pywal16
 r2modman-bin
+rmcl-bin
 spotify
 sqlit
 try-cli

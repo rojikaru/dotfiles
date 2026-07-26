@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Arch-only script to update the list of installed packages in the dotfiles repository.
+# Used by pacman hooks to keep the list up-to-date automatically.
+
+set -euo pipefail
+
+AUTOCOMMIT=${AUTOCOMMIT:-false}
+
+DOTS="$HOME/.dotfiles"
+mkdir -p "$DOTS/packages"
+
+pacman -Qqen > "$DOTS/packages/native.txt"
+pacman -Qqem | grep -v -- '-debug$' > "$DOTS/packages/aur.txt"
+
+if [[ "$AUTOCOMMIT" == "true" ]]; then
+    cd "$DOTS"
+    git add packages/native.txt packages/aur.txt
+    git diff --cached --quiet || git commit -m "auto(libalpm): update package lists"
+fi
