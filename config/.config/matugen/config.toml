@@ -52,14 +52,23 @@ output_path = '~/.config/btop/themes/matugen.theme'
 input_path = '~/.config/matugen/templates/starship-colors.toml'
 output_path = '~/.config/starship.toml'
 
-[templates.chrome]
+[templates.chromium]
 input_path = '~/.config/matugen/templates/chromium-theme.json'
 output_path = '~/.config/chromium/Default/Extensions/Matugen-theme/manifest.json'
 
 # Website colors (userContent.css)
 [templates.zen-colors]
 input_path  = "~/.config/matugen/templates/zen-colors.css"
-output_path = "~/.zen/6ehkzul9.Default (release)/chrome/colors.css"
+output_path = "~/.config/matugen/generated/zen-colors.css"
+post_hook   = '''
+bash -c '
+  src="$HOME/.config/matugen/generated/zen-colors.css"
+  for profile in "$HOME"/.zen/*.Default*/chrome/; do
+    mkdir -p "$profile"
+    cp "$src" "$profile/colors.css"
+  done
+'
+'''
 
 [templates.pywalfox]
 input_path  = "~/.config/matugen/templates/pywalfox-colors.json"
@@ -69,7 +78,7 @@ bash -c '
 {
   if command -v pywalfox >/dev/null 2>&1; then
     mkdir -p "$HOME/.cache/wal"
-    ln -nfs "$XDG_CONFIG_HOME/matugen/generated/pywalfox-colors.json" "$HOME/.cache/wal/colors.json"
+    ln -nfs "$XDG_CONFIG_HOME/matugen/generated/pywalfox-colors.json" "$XDG_CACHE_HOME/wal/colors.json"
     pywalfox update
   fi
 } >/dev/null 2>&1 </dev/null & disown
