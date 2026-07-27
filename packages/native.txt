@@ -134,10 +134,12 @@ sof-firmware
 starship
 steam
 stow
+strace
 sudo
 swappy
 swaync
 swayosd
+sysstat
 telegram-desktop
 terminus-font
 tesseract-data-eng

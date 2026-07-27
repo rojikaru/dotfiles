@@ -8,8 +8,8 @@ palette = 'colors'
 
 [palettes.colors]
 # Wallpaper-derived accent (matugen). Swap the role for a different look,
-# e.g. #a0d0cb or #c0cbac.
-accent = '#b3d089'
+# e.g. #d6bee5 or #bac8db.
+accent = '#a0cafd'
 
 [character]
 error_symbol = "[✗](bold accent)"
