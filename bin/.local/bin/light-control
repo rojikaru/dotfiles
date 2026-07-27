@@ -3,19 +3,19 @@ set -euo pipefail
 
 MODE="$1"
 
-CONFIG="$XDG_CONFIG_HOME/waybar/scripts/waybar-light-controls/default_values/default_light.conf"
+CONFIG="$XDG_CONFIG_HOME/hyprsunset/default_light.conf"
 light=$(cat "$CONFIG" 2>/dev/null || echo 80)
 
 if [ "$MODE" == "up" ]; then
-	light=$((light + 10))
-	if [ "$light" -gt 100 ]; then
-		light=100
-	fi
+  light=$((light + 10))
+  if [ "$light" -gt 100 ]; then
+    light=100
+  fi
 elif [ "$MODE" == "down" ]; then
-	light=$((light - 10))
-	if [ "$light" -lt 20 ]; then
-		light=20
-	fi
+  light=$((light - 10))
+  if [ "$light" -lt 20 ]; then
+    light=20
+  fi
 fi
 echo "$light" >"$CONFIG"
 

@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+CONFIG="$XDG_CONFIG_HOME/hyprsunset"
+light=$(cat "$CONFIG/default_light.conf" 2>/dev/null || echo 80)
+temperature=$(cat "$CONFIG/default_temperature.conf" 2>/dev/null || echo 6200)
+
 hyprsunset &
 
-hyprctl hyprsunset gamma $(cat ~/.config/waybar/scripts/waybar-light-controls/default_values/default_light.conf)
-hyprctl hyprsunset temperature $(cat ~/.config/waybar/scripts/waybar-light-controls/default_values/default_temperature.conf)
+hyprctl hyprsunset gamma $light
+hyprctl hyprsunset temperature $temperature
