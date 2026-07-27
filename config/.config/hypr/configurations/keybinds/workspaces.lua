@@ -4,7 +4,7 @@ for i = 1, 10 do
 	hl.bind(MainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
-special_workspace_binds = {
+local special_workspace_binds = {
 	{ "COMMA", "notes" },
 	{ "PERIOD", "term" },
 	{ "SLASH", "browser" },
@@ -12,8 +12,11 @@ special_workspace_binds = {
 for _, bind in ipairs(special_workspace_binds) do
 	local key, workspace = bind[1], bind[2]
 	hl.bind(MainMod .. " + " .. key, hl.dsp.workspace.toggle_special(workspace))
-	hl.bind(MainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ 
-		workspace = "special:" .. workspace, 
-		follow = false
-	}))
+	hl.bind(
+		MainMod .. " + SHIFT + " .. key,
+		hl.dsp.window.move({
+			workspace = "special:" .. workspace,
+			follow = false,
+		})
+	)
 end

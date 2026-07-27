@@ -1,12 +1,6 @@
-hl.bind(
-	"CTRL + ALT + DELETE", 
-	hl.dsp.exec_cmd("hyprctl -j clients | jq -r '.[].pid' | xargs kill -SIGTERM")
-)
+hl.bind("CTRL + ALT + DELETE", hl.dsp.exec_cmd("hyprctl -j clients | jq -r '.[].pid' | xargs kill -SIGTERM"))
 
-hl.bind(
-	MainMod .. " + ALT + M",
-	hl.dsp.exec_cmd("hyprshutdown --post-cmd 'uwsm stop'")
-)
+hl.bind(MainMod .. " + ALT + M", hl.dsp.exec_cmd("hyprshutdown --post-cmd 'uwsm stop'"))
 
 hl.bind("SUPER + TAB", function()
 	hl.plugin.hyprexpo.expo("toggle")
@@ -18,11 +12,14 @@ hl.bind(MainMod .. " + C", hl.dsp.send_shortcut({ mods = "CTRL", key = "Insert",
 hl.bind(MainMod .. " + V", hl.dsp.send_shortcut({ mods = "SHIFT", key = "Insert", window = "activewindow" }))
 hl.bind(MainMod .. " + SHIFT + Z", hl.dsp.send_shortcut({ mods = "CTRL + SHIFT", key = "Z", window = "activewindow" }))
 
-super_passthrough_binds = { "X", "A", "Z" }
+local super_passthrough_binds = { "X", "A", "Z" }
 for _, key in ipairs(super_passthrough_binds) do
-	hl.bind(MainMod .. " + " .. key, hl.dsp.send_shortcut({ 
-		mods = "CTRL", 
-		key = key, 
-		window = "activewindow"
-	}))
+	hl.bind(
+		MainMod .. " + " .. key,
+		hl.dsp.send_shortcut({
+			mods = "CTRL",
+			key = key,
+			window = "activewindow",
+		})
+	)
 end

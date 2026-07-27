@@ -1,4 +1,4 @@
-function apply_binds(cmd_prefix, dict, secondary_mod, joiner)
+local function apply_binds(cmd_prefix, dict, secondary_mod, joiner)
 	for _, bind in ipairs(dict) do
 		local key, cmd = bind[1], bind[2]
 		local joiner = joiner or " "
@@ -60,6 +60,7 @@ local launcher_binds = {
 	{ "SHIFT + X", "projectpick" },
 
 	-- Copilot button on keyboard
+	-- alternative: install keyd and rebind to right CTRL
 	{ "SHIFT + F23", "projectpick" },
 }
 apply_binds("pkill rofi ||", launcher_binds)
