@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # Apply pywal16 colors to Cava
 
+set -euo pipefail
+
 # Load colors
 source "$XDG_CACHE_HOME/wallust/colors.sh"
-
-set -euo pipefail
 
 # Choose which pywal colors to use\
 bg="$background"
