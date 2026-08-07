@@ -105,6 +105,7 @@ pipewire
 pipewire-alsa
 pipewire-pulse
 plocate
+plymouth
 polkit-kde-agent
 proton-vpn-gtk-app
 python-cairo

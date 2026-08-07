@@ -1,5 +1,4 @@
 bash-pipes
-catnap
 claude-code-stable-bin
 cliamp-bin
 clock-rs-git
@@ -21,6 +20,7 @@ rmcl-bin
 spotify
 sqlit
 try-cli
+ttf-ms-fonts
 tzupdate
 ufw-docker
 visual-studio-code-bin
@@ -31,3 +31,4 @@ wayfreeze-git
 wrkflw-bin
 xdg-terminal-exec
 zen-browser-bin
+zotero-bin
