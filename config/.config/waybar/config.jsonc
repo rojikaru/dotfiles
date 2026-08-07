@@ -12,7 +12,11 @@
     "bluetooth",
     "hyprland/window"
   ],
-  "modules-center": ["backlight", "hyprland/workspaces", "pulseaudio"],
+  "modules-center": [
+    "backlight",
+    "hyprland/workspaces",
+    "pulseaudio"
+  ],
   "modules-right": [
     "cava",
     "group/sysstats",
@@ -27,7 +31,11 @@
       "children-class": "not-memory",
       "transition-left-to-right": false
     },
-    "modules": ["cpu", "memory", "idle_inhibitor"]
+    "modules": [
+      "cpu",
+      "memory",
+      "idle_inhibitor"
+    ]
   },
   "idle_inhibitor": {
     "format": "{icon}",
@@ -53,7 +61,13 @@
   },
   "battery": {
     "format": "{capacity}% {icon}",
-    "format-icons": ["", "", "", "", ""],
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
     "events": {
       "on-discharging-warning": "notify-send -a 'Battery' -u normal 'Battery' 'Low Charge Level!'",
       "on-discharging-critical": "notify-send -a 'Battery' -u critical 'Battery' 'Very Low Charge Level!'",
@@ -63,7 +77,6 @@
       "warning": 30,
       "critical": 15
     },
-
     "format-charging": "{capacity}% ",
     "on-click": "battery-profile-toggle"
   },
@@ -114,17 +127,22 @@
       "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
       "alsa_output.pci-0000_00_1f.3.analog-stereo-muted": "",
       "headphone": "",
-      "hands-free": "",
-      "headset": "",
+      "hands-free": "󱡏",
+      "headset": "󱡏",
       "phone": "",
       "phone-muted": "",
       "portable": "",
       "car": "",
-      "default": ["", ""]
+      "default": [
+        "",
+        ""
+      ]
     },
     "scroll-step": 1,
     "on-click": "$TERMINAL -e wiremix",
-    "ignored-sinks": ["Easy Effects Sink"]
+    "ignored-sinks": [
+      "Easy Effects Sink"
+    ]
   },
   "bluetooth": {
     "format": "{device_alias} 󰂯",
@@ -154,7 +172,10 @@
   "backlight": {
     "device": "intel_backlight",
     "format": "{percent}% {icon}",
-    "format-icons": ["", ""],
+    "format-icons": [
+      "",
+      ""
+    ],
     "format-alt": "{percent}% {icon}",
     "on-click": "brightnessctl set 5%+",
     "on-click-right": "brightnessctl set --min-value=1 5%-",
@@ -186,7 +207,16 @@
     "reverse": false,
     "bar_delimiter": 0,
     "input_delay": 0.5,
-    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    "format-icons": [
+      "▁",
+      "▂",
+      "▃",
+      "▄",
+      "▅",
+      "▆",
+      "▇",
+      "█"
+    ],
     "actions": {
       "on-click-right": "mode"
     }
