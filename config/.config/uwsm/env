@@ -22,8 +22,3 @@ export XCURSOR_THEME=breeze
 export XCURSOR_SIZE=24
 export XDG_MENU_PREFIX=arch-
 export QT_QPA_PLATFORMTHEME=qt6ct
-
-# KVM / software rendering fallback
-export WLR_NO_HARDWARE_CURSORS="1"
-export WLR_RENDERER_ALLOW_SOFTWARE="1"
-
