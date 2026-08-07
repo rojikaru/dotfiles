@@ -8,7 +8,6 @@ hl.on("hyprland.start", function()
 		"uwsm app -- awww-daemon",
 		"uwsm app -- hyprsunset-init",
 		"uwsm app -- configwatch",
-		"uwsm app -- copyq",
 		"uwsm app -- swaync",
 		"uwsm app -- waybar",
 	}
