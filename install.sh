@@ -161,6 +161,17 @@ else
 fi
 printf "\n"
 
+if gum confirm "Switch shell to zsh (all configs are for zsh)?"; then
+	if [[ "$DRY_RUN" = true ]]; then
+		gums 4 "[Dry run] would switch shell to zsh"
+	else
+		chsh -s "$(command -v zsh)" && gums 2 "Shell changed to zsh successfully."
+	fi
+else
+	gums 3 "Skipping shell change. Please note that all configs are for zsh."
+fi
+printf "\n"
+
 # Checking only for PPD because it's provided by tlp-pd too
 if ! pacman -Q \
 	power-profiles-daemon \
@@ -168,7 +179,7 @@ if ! pacman -Q \
 	pipewire bluez \
 	&>/dev/null; then
 	gums 3 --border rounded --padding "1 2" \
-		"⚠  power-profiles-daemon (or tlp), iwd, networkmanager, pipewire, and bluez" \
+		"⚠  power-profiles-daemon (or tlp + tlp-pd), iwd, networkmanager, pipewire, and bluez" \
 		"⚠  are required for proper functionality. They aren't included, so" \
 		"⚠  please install them manually OR run the script again and select" \
 		"⚠  'Auto-install (select lists of packages)' to install them OR" \
@@ -274,8 +285,10 @@ if gum confirm "Backup existing dotfiles to $BACKUP_DIR? (will move ~/.config an
 		done
 		gums 2 "Existing dotfiles backed up to $BACKUP_DIR."
 	fi
-	printf "\n"
+else
+	gums 3 "Skipping backup."
 fi
+printf "\n"
 
 # Dotfiles symlinking
 AVAILABLE_DIRS=$(find "$DOTS_DIR" -mindepth 1 -maxdepth 1 -type d \
@@ -379,12 +392,14 @@ if command -v systemctl &>/dev/null; then
 else
 	gums 3 "Systemd not detected. Skipping service enablement."
 fi
+printf "\n"
 
 # Post-installation
 gums 2 \
 	"Installation complete. Please restart your session to apply changes."
 gums 3 \
-	"If you encounter issues, restore from backup: mv $BACKUP_DIR/* $HOME/
+	"If you encounter issues, restore from backup: 
+mv $BACKUP_DIR/* $HOME/
 or use your snapshotting tool to revert the system state."
 printf "\n"
 
