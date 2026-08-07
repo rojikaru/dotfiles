@@ -4,7 +4,7 @@
 # Static images (png/jpg/jpeg/webp/bmp) are printed unchanged.
 # Animated files (gif/mp4/webm/mov/mkv/m4v/avi) resolve to, in order:
 #   1. a sibling poster with the same basename (.png/.jpg/.jpeg/.webp), if present
-#   2. an extracted first frame cached under ~/.cache/wallpaper-posters/
+#   2. an extracted first frame cached under $XDG_CACHE_HOME/wallpaper-posters/
 #
 # This exists because neither hyprlock nor pywal/wallust/matugen can read video,
 # so they must be fed a still frame instead.
@@ -33,7 +33,7 @@ for e in png jpg jpeg webp; do
 done
 
 # Fall back to extracting the first frame, cached and invalidated by mtime.
-cache="$HOME/.cache/wallpaper-posters"
+cache="$XDG_CACHE_HOME/wallpaper-posters"
 mkdir -p "$cache"
 out="$cache/$(basename "$base").png"
 

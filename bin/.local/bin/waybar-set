@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Generates ~/.config/waybar/style.css that imports the matugen + wallust
+# Generates $XDG_CONFIG_HOME/waybar/style.css that imports the matugen + wallust
 # colors followed by the chosen style. Color imports use absolute paths so
 # they resolve no matter where the chosen style file lives.
 

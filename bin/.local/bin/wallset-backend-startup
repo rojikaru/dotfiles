@@ -2,8 +2,8 @@
 set -euo pipefail
 
 WALLPAPER_DIR="${WALLPAPER_DIR:-$HOME/Pictures/Wallpapers}"
-LAST_FILE="$HOME/.cache/last_wallpaper"  # remembers last wallpaper
-CACHE="$HOME/.cache/wallpapers_list.txt" # cached list of wallpapers
+LAST_FILE="$XDG_CACHE_HOME/last_wallpaper"  # remembers last wallpaper
+CACHE="$XDG_CACHE_HOME/wallpapers_list.txt" # cached list of wallpapers
 SDDM_WALLPAPER="/usr/share/wallpapers/Next/contents/images/5120x2880.png"
 IS_CHANGING_SDDM_BG=0
 
@@ -52,7 +52,7 @@ wallust run "$FILE"
 
 matugen --source-color-index 0 image "$FILE"
 
-cp "$FILE" ~/.config/background
+cp "$FILE" $XDG_CONFIG_HOME/background
 
 # Copy to sddm theme
 sddm_extensions=("png" "jpg" "jpeg" "webp" "gif")

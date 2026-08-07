@@ -1,6 +1,7 @@
-source ~/.config/zsh/aliases
-source ~/.config/zsh/bindings
-source ~/.config/zsh/envs
-source ~/.config/zsh/init
+source $XDG_CONFIG_HOME/zsh/aliases
+source $XDG_CONFIG_HOME/zsh/bindings
+source $XDG_CONFIG_HOME/zsh/envs
+source $XDG_CONFIG_HOME/zsh/init
 
-for f in ~/.config/zsh/fns/*; do source "$f"; done
+for f in $XDG_CONFIG_HOME/zsh/fns/*; do source "$f"; done
+

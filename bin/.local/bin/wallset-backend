@@ -42,7 +42,7 @@ matugen --source-color-index 0 image "$POSTER"
 pywal-cava
 
 # === hyprlock background (static only) ===
-cp "$POSTER" ~/.config/background
+cp "$POSTER" $XDG_CONFIG_HOME/background
 
 # === sddm background ===
 if [ "$IS_CHANGING_SDDM_BG" -eq 1 ]; then

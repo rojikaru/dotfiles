@@ -1,7 +1,7 @@
 /* CSS variables for Waybar
  * You can add it to wallust.toml with:
 
-waybar = { src = "waybar-colors.css", dst = "~/.config/waybar/colors.css" }
+waybar = { src = "waybar-colors.css", dst = "$XDG_CONFIG_HOME/waybar/colors.css" }
 
  * And then in you waybar 'style.css' file, import it with:
 

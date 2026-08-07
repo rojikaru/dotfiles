@@ -77,7 +77,7 @@ post_hook   = '''
 bash -c '
 {
   if command -v pywalfox >/dev/null 2>&1; then
-    mkdir -p "$HOME/.cache/wal"
+    mkdir -p "$XDG_CACHE_HOME/wal"
     ln -nfs "$XDG_CONFIG_HOME/matugen/generated/pywalfox-colors.json" "$XDG_CACHE_HOME/wal/colors.json"
     pywalfox update
   fi

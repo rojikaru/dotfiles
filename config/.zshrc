@@ -18,4 +18,4 @@ setopt SHARE_HISTORY
 setopt INC_APPEND_HISTORY
 
 # Source everything
-source ~/.config/zsh/rc
+source $XDG_CONFIG_HOME/zsh/rc

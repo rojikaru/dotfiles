@@ -1,8 +1,8 @@
 # Bun globals
-export PATH="$HOME/.cache/.bun/bin:$PATH"
+export PATH="$XDG_CACHE_HOME/.bun/bin:$PATH"
 
 # Pnpm globals
-export PATH="$HOME/.local/share/pnpm/bin:$PATH"
+export PATH="$XDG_DATA_HOME/pnpm/bin:$PATH"
 
 # Rice scripts and other one-offs
 export PATH="$HOME/.local/bin:$PATH"
