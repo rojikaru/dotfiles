@@ -78,7 +78,7 @@
       "critical": 15
     },
     "format-charging": "{capacity}% ",
-    "on-click": "battery-profile-toggle"
+    "on-click": "battery-profile"
   },
   "clock": {
     "format": "{:%H:%M} ",
