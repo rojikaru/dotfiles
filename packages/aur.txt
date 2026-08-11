@@ -26,7 +26,7 @@ ufw-docker
 visual-studio-code-bin
 wallset
 wallust
-waybar-cava-git
+waybar-git
 wayfreeze-git
 wrkflw-bin
 xdg-terminal-exec
