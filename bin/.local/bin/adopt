@@ -11,88 +11,91 @@ GITIGNORE_FILE="$CONFIG_PKG/.gitignore"
 COMMIT=${COMMIT:-false}
 
 usage() {
-	echo "Usage: adopt --commit <app> [app2] [app3]..."
-	echo "Adopts a $XDG_CONFIG_HOME app into dotfiles and re-applies stow command."
-	echo "Options:"
-	echo "  -h, --help      Show this help message and exit"
-	echo "  -c, --commit    Commit the adopted app to git"
+  echo "Usage: adopt --commit <app> [app2] [app3]..."
+  echo "Adopts a $XDG_CONFIG_HOME app into dotfiles and re-applies stow command."
+  echo "Options:"
+  echo "  -h, --help      Show this help message and exit"
+  echo "  -c, --commit    Commit the adopted app to git"
 }
 
 if [[ $# -eq 0 ]]; then
-	usage
-	exit 1
+  usage
+  exit 1
 fi
 
 OPTIONS=$(getopt -o h,c --long help,commit -- "$@")
 eval set -- "$OPTIONS"
 while true; do
-	case "$1" in
-	--help | -h)
-		usage
-		exit 0
-		;;
-	--commit | -c)
-		COMMIT=true
-		shift
-		;;
-	--)
-		shift
-		break
-		;;
-	*)
-		echo "Invalid option: $1"
-		help
-		exit 1
-		;;
-	esac
+  case "$1" in
+  --help | -h)
+    usage
+    exit 0
+    ;;
+  --commit | -c)
+    COMMIT=true
+    shift
+    ;;
+  --)
+    shift
+    break
+    ;;
+  *)
+    echo "Invalid option: $1"
+    help
+    exit 1
+    ;;
+  esac
 done
 
 ADOPTED=0
 for app in "$@"; do
-	echo "Adopting $app..."
-	src="$XDG_CONFIG_HOME/$app"
-	dst="$CONFIG_PKG/$app"
+  echo "Adopting $app..."
+  src="$XDG_CONFIG_HOME/$app"
+  dst="$CONFIG_PKG/$app"
 
-	if [[ ! -e "$src" ]]; then
-		echo "✗ $src does not exist, skipping"
-		continue
-	fi
+  if [[ ! -e "$src" ]]; then
+    echo "✗ $src does not exist, skipping"
+    continue
+  fi
 
-	if [[ -L "$src" ]]; then
-		echo "✗ $src is already a symlink (already tracked?), skipping"
-		continue
-	fi
+  if [[ -L "$src" ]]; then
+    echo "✗ $src is already a symlink (already tracked?), skipping"
+    continue
+  fi
 
-	if [[ -e "$dst" ]]; then
-		echo "✗ $dst already exists in dotfiles, skipping"
-		continue
-	fi
+  if [[ -e "$dst" ]]; then
+    echo "✗ $dst already exists in dotfiles, skipping"
+    continue
+  fi
 
-	mv "$src" "$dst"
+  mv "$src" "$dst"
 
-	# Add to gitignore (whitelist)
-	echo "" >>"$GITIGNORE_FILE"
-	printf '!%s/\n!%s/**\n' "$app" "$app" >>"$GITIGNORE_FILE"
+  # Add to gitignore (whitelist)
+  echo "" >>"$GITIGNORE_FILE"
+  printf '!%s/\n!%s/**\n' "$app" "$app" >>"$GITIGNORE_FILE"
 
-	if [[ "$COMMIT" != true ]]; then
-		echo "  Reminder: gitignore updated for $*. Review and commit when ready."
-	fi
+  if [[ "$COMMIT" != true ]]; then
+    echo "  Reminder: gitignore updated for $*. Review and commit when ready."
+  fi
 
-	echo "✓ Adopted $app"
-	((++ADOPTED))
+  echo "✓ Adopted $app"
+  printf "\n"
+
+  ((++ADOPTED))
 done
 
 if [[ $ADOPTED -eq 0 ]]; then
-	echo "No apps were adopted. Exiting."
-	exit 0
+  echo "No apps were adopted. Exiting."
+  exit 0
 fi
 
 restow
+printf "\n"
 
 if [[ "$COMMIT" == true ]]; then
-	git -C "$DOTS_DIR" add "$CONFIG_PKG"
-	git -C "$DOTS_DIR" commit -m "adopt: $*"
-	echo "✓ Committed adopted apps ($*) to git"
+  git -C "$DOTS_DIR" add "$CONFIG_PKG"
+  git -C "$DOTS_DIR" commit -m "adopt: $*"
+  echo "✓ Committed adopted apps ($*) to git"
 fi
 
 echo "✓ All done. Adopted $ADOPTED app(s)."

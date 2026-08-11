@@ -76,3 +76,6 @@ waybar/style.css
 
 shaders/
 generated/
+
+!MangoHud/
+!MangoHud/**
