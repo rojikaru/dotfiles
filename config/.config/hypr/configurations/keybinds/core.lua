@@ -1,4 +1,5 @@
-hl.bind("CTRL + ALT + DELETE", hl.dsp.exec_cmd("hyprctl -j clients | jq -r '.[].pid' | xargs kill -SIGTERM"))
+hl.bind("CTRL + ALT + DELETE", hl.dsp.exec_cmd("killall"))
+hl.bind("CTRL + SHIFT + ESCAPE", hl.dsp.exec_cmd("kitty -e btop"))
 
 hl.bind(MainMod .. " + ALT + M", hl.dsp.exec_cmd("hyprshutdown --post-cmd 'uwsm stop'"))
 
