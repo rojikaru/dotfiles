@@ -45,4 +45,4 @@ watch() {
 
 watch "$XDG_CONFIG_HOME/hypr" "hyprctl reload" &
 watch "$XDG_CONFIG_HOME/swaync" "swaync-client -R -rs" &
-watch "$XDG_CONFIG_HOME/waybar" "pkill waybar; sleep 0.1; uwsm app -- waybar &" &
+watch "$XDG_CONFIG_HOME/waybar" "pkill waybar; sleep 0.1; uwsm app -- waybar &" "style.css" &
