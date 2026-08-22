@@ -1,5 +1,4 @@
 # Environment Variables
-export PATH="$HOME/.local/bin:$PATH"
 export EDITOR="nvim"
 export SUDO_EDITOR="$EDITOR"
 export TERMINAL="kitty"
@@ -22,3 +21,35 @@ export XCURSOR_THEME=breeze
 export XCURSOR_SIZE=24
 export XDG_MENU_PREFIX=arch-
 export QT_QPA_PLATFORMTHEME=qt6ct
+
+# Clean up dotfile clutter
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+export GOPATH="$XDG_DATA_HOME/go"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
+export WINEPREFIX="$XDG_DATA_HOME/wine"
+export DOTNET_CLI_HOME="$XDG_DATA_HOME/dotnet"
+export NUGET_PACKAGES="$XDG_DATA_HOME/nuget"
+
+export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_repl_history"
+export LESSHISTFILE="$XDG_STATE_HOME/less/history"
+
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+
+# Bun globals
+export PATH="$XDG_CACHE_HOME/.bun/bin:$PATH"
+
+# Pnpm globals
+export PATH="$XDG_DATA_HOME/pnpm/bin:$PATH"
+
+# Rice scripts and other one-offs
+export PATH="$HOME/.local/bin:$PATH"
+
+# Cargo
+export PATH="$CARGO_HOME:$PATH"
+
+# Rice scripts
+export PATH="$HOME/.local/bin:$PATH"
