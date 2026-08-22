@@ -146,6 +146,7 @@ terminus-font
 tesseract-data-eng
 thermald
 time
+tinyxxd
 tldr
 tlp
 tlp-pd
