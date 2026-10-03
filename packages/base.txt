@@ -28,6 +28,7 @@ polkit-kde-agent
 qt6ct
 wireplumber
 xdg-desktop-portal-hyprland
+xdg-terminal-exec
 
 hyprland
 uwsm
