@@ -5,49 +5,49 @@ MODE="${1:-fullscreen}"
 FILE="$HOME/Pictures/Screenshots/Screenshot $(date '+%Y-%m-%d %H:%M:%S').png"
 
 screenshot() {
-	case "$MODE" in
-	fullscreen)
-		grim "$FILE"
-		;;
-	area | draw)
-		grim -g "$(slurp)" "$FILE"
-		;;
-	*)
-		echo "Usage: take-screenshot fullscreen|area|draw"
-		exit 1
-		;;
-	esac
+  case "$MODE" in
+  fullscreen)
+    grim "$FILE"
+    ;;
+  area | draw)
+    grim -g "$(slurp)" "$FILE"
+    ;;
+  *)
+    echo "Usage: take-screenshot fullscreen|area|draw"
+    exit 1
+    ;;
+  esac
 
-	pkill -x wayfreeze 2>/dev/null || true
+  pkill -x wayfreeze 2>/dev/null || true
 
-	if [[ $MODE == "draw" ]]; then
-		swappy -f "$FILE" -o "$FILE"
-	fi
+  if [[ $MODE == "draw" ]]; then
+    tensaku -f "$FILE" -o "$FILE"
+  fi
 
-	wl-copy <"$FILE"
+  wl-copy <"$FILE"
 }
 
 notify() {
-	ACTION=$(timeout 60 notify-send \
-		-a "Screenshot" \
-		-i "$FILE" \
-		--action='default=Open' \
-		"Screenshot" \
-		"📸 Screenshot saved!") || return 0
+  ACTION=$(timeout 60 notify-send \
+    -a "Screenshot" \
+    -i "$FILE" \
+    --action='default=Open' \
+    "Screenshot" \
+    "📸 Screenshot saved!") || return 0
 
-	case "$ACTION" in
-	"default") xdg-open "$FILE" ;;
-	esac
+  case "$ACTION" in
+  "default") xdg-open "$FILE" ;;
+  esac
 }
 
 if [[ $MODE != "fullscreen" ]] && command -v wayfreeze &>/dev/null; then
-	export -f screenshot
-	export MODE FILE
-	wayfreeze --after-freeze-cmd "bash -c 'screenshot'" || true
-	setsid bash -c "$(declare -f notify); MODE='$MODE' FILE='$FILE' notify" &>/dev/null &
-	disown
+  export -f screenshot
+  export MODE FILE
+  wayfreeze --after-freeze-cmd "bash -c 'screenshot'" || true
+  setsid bash -c "$(declare -f notify); MODE='$MODE' FILE='$FILE' notify" &>/dev/null &
+  disown
 else
-	screenshot
-	setsid bash -c "$(declare -f notify); MODE='$MODE' FILE='$FILE' notify" &>/dev/null &
-	disown
+  screenshot
+  setsid bash -c "$(declare -f notify); MODE='$MODE' FILE='$FILE' notify" &>/dev/null &
+  disown
 fi
