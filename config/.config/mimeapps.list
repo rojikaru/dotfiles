@@ -34,6 +34,9 @@ audio/vnd.wave=cliamp-gui.desktop
 audio/ogg=cliamp-gui.desktop
 audio/aac=cliamp-gui.desktop
 audio/webm=cliamp-gui.desktop
+text/markdown=nvim.desktop
+text/x-markdown=nvim.desktop
+text/plain=nvim.desktop
 
 [Added Associations]
 x-scheme-handler/http=zen.desktop;
