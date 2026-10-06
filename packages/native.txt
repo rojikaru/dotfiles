@@ -48,6 +48,7 @@ gvfs
 hypridle
 hyprland
 hyprlock
+hyprpm
 hyprshutdown
 hyprsunset
 impala

@@ -36,6 +36,7 @@ hypridle
 hyprlock
 hyprshutdown
 hyprsunset
+hyprpm
 
 awww
 matugen
