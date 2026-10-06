@@ -7,20 +7,17 @@ export TERMINAL="kitty"
 export WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
 
 # Graphics & Rendering
-export AQ_DRM_DEVICES=/dev/dri/intel-card:/dev/dri/nvidia-card
-export WLR_RENDER_DRM_DEVICE=/dev/dri/intel-card
-export __GLX_VENDOR_LIBRARY_NAME=mesa
-export GSK_RENDERER=gl
+export AQ_DRM_DEVICES="/dev/dri/intel-card:/dev/dri/nvidia-card"
 
 # Gaming
-export MANGOHUD=1
+export MANGOHUD="1"
 
 # Theming
-export GTK_THEME=Adwaita:dark
-export XCURSOR_THEME=breeze
-export XCURSOR_SIZE=24
-export XDG_MENU_PREFIX=arch-
-export QT_QPA_PLATFORMTHEME=qt6ct
+export GTK_THEME="Adwaita:dark"
+export XCURSOR_THEME="breeze"
+export XCURSOR_SIZE="24"
+export XDG_MENU_PREFIX="arch-"
+export QT_QPA_PLATFORMTHEME="qt6ct"
 
 # Clean up dotfile clutter
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
@@ -48,8 +45,3 @@ export PATH="$XDG_DATA_HOME/pnpm/bin:$PATH"
 # Rice scripts and other one-offs
 export PATH="$HOME/.local/bin:$PATH"
 
-# Cargo
-export PATH="$CARGO_HOME:$PATH"
-
-# Rice scripts
-export PATH="$HOME/.local/bin:$PATH"

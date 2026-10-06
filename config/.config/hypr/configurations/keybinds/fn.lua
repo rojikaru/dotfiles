@@ -19,4 +19,4 @@ hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set 5%+"))
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set --min-value=1 5%-"))
 
 -- Apps
-hl.bind("XF86Calculator", hl.dsp.exec_cmd("uwsm app -- gnome-calculator"))
+hl.bind("XF86Calculator", hl.dsp.exec_cmd("uwsm app -- env GSK_RENDERER=gl gnome-calculator"))
