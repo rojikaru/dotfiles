@@ -14,6 +14,7 @@ parsec-bin
 paru
 postman-bin
 python-pywal16
+quarto-cli-bin
 r2modman-bin
 rmcl-bin
 spotify
