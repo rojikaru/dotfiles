@@ -110,6 +110,7 @@ proton-vpn-gtk-app
 python-cairo
 python-openai-whisper
 python-pydbus
+python-pynvim
 python-pyqt6
 python-pytorch-cuda
 qemu-full
@@ -148,6 +149,7 @@ tlp-pd
 tmux
 tpm2-tools
 traceroute
+tree-sitter-cli
 tumbler
 udiskie
 udisks2
