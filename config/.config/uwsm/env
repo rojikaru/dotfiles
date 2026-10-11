@@ -45,3 +45,6 @@ export PATH="$XDG_DATA_HOME/pnpm/bin:$PATH"
 # Rice scripts and other one-offs
 export PATH="$HOME/.local/bin:$PATH"
 
+# Quarto in Neovim
+export QUARTO_PYTHON="$HOME/.venvs/quarto/bin/python"
+

@@ -106,7 +106,6 @@ pipewire-pulse
 plocate
 plymouth
 polkit-kde-agent
-proton-vpn-gtk-app
 python-cairo
 python-openai-whisper
 python-pydbus
