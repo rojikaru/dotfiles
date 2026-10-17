@@ -3,9 +3,11 @@ hl.bind("CTRL + SHIFT + ESCAPE", hl.dsp.exec_cmd("kitty -e btop"))
 
 hl.bind(MainMod .. " + ALT + M", hl.dsp.exec_cmd("hyprshutdown --post-cmd 'uwsm stop'"))
 
-hl.bind("SUPER + TAB", function()
-	hl.plugin.hyprexpo.expo("toggle")
-end)
+if hl.plugin and hl.plugin.hyprexpo then
+	hl.bind("SUPER + TAB", function()
+		hl.plugin.hyprexpo.expo("toggle")
+	end)
+end
 
 -- Bind default CTRL hotkeys to SUPER keys
 
