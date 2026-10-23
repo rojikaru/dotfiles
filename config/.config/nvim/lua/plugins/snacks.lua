@@ -35,10 +35,6 @@ return {
 
   {
     "LazyVim/LazyVim",
-    opts = {
-      root = {
-        autocmd = false,
-      },
-    },
+    opts = {},
   },
 }
