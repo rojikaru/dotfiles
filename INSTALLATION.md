@@ -1,4 +1,5 @@
 # Arch Linux Manual Installation Guide
+
 ## Stack: LUKS + btrfs + Limine UKI + Secure Boot + TPM + Hyprland (uwsm) + TLP
 
 Tested on: HP Omen, Intel Core 5 210H + RTX 5060, June 2026.
@@ -8,11 +9,13 @@ Tested on: HP Omen, Intel Core 5 210H + RTX 5060, June 2026.
 ## 0. Pre-installation
 
 ### Boot from USB
+
 1. Download Arch ISO, flash with Ventoy or balenaEtcher
 2. In UEFI: disable Secure Boot, set USB as first boot device
 3. Boot into live environment
 
 ### WiFi (if needed)
+
 ```bash
 iwctl
 station wlan0 scan
@@ -30,6 +33,7 @@ cfdisk /dev/nvme0n1
 ```
 
 Create two partitions:
+
 | Partition | Size | Type |
 |-----------|------|------|
 | nvme0n1p1 | 512MB–1GB | EFI System |
@@ -88,6 +92,11 @@ mount /dev/nvme0n1p1 /mnt/boot
 
 ## 4. Pacstrap
 
+IMPORTANT: don't copy-paste this list blindly!!!
+
+Some of these packages are for Intel iGPU + Nvidia dGPU combo.
+If you have other hardware, please find the relevant alternatives.
+
 ```bash
 pacstrap -K /mnt \
   base base-devel linux linux-headers linux-firmware \
@@ -126,6 +135,7 @@ arch-chroot /mnt
 ```
 
 ### Timezone and locale
+
 ```bash
 ln -sf /usr/share/zoneinfo/Europe/Kyiv /etc/localtime
 hwclock --systohc
@@ -139,6 +149,7 @@ echo "LANG=en_US.UTF-8" > /etc/locale.conf
 ```
 
 ### pacman.conf
+
 ```bash
 nvim /etc/pacman.conf
 # Uncomment [multilib] section (both lines)
@@ -151,6 +162,7 @@ pacman -Syy
 ```
 
 ### Users
+
 ```bash
 passwd  # root password
 useradd -m -G wheel,docker,video,input,storage -s /bin/zsh rojikaru
@@ -181,11 +193,12 @@ nvim /etc/mkinitcpio.conf
 ```
 
 ```
-MODULES=(btrfs nvidia nvidia_modeset nvidia_uvm nvidia_drm)
+MODULES=()
 HOOKS=(base systemd autodetect microcode modconf kms block keyboard sd-vconsole sd-encrypt filesystems fsck)
 ```
 
 ### UKI preset
+
 ```bash
 mkdir -p /boot/EFI/Linux
 
@@ -206,6 +219,9 @@ fallback_options="-S autodetect"
 ```
 
 ### Kernel cmdline (CRITICAL — this is what UKI embeds)
+
+IMPORTANT: Change `nvidia-drm` attribute if you have dGPU other than Nvidia!
+
 ```bash
 # Get UUIDs
 LUKS_UUID=$(blkid -s UUID -o value /dev/nvme0n1p2)
@@ -219,6 +235,7 @@ cat /etc/kernel/cmdline  # verify
 ```
 
 ### LUKS for initramfs
+
 ```bash
 cat > /etc/crypttab.initramfs <<EOF
 root UUID=${LUKS_UUID} - luks
@@ -226,6 +243,7 @@ EOF
 ```
 
 ### Generate UKI
+
 ```bash
 mkinitcpio -P
 ls -lh /boot/EFI/Linux/  # verify .efi files exist and are 100MB+
@@ -262,6 +280,7 @@ timeout: 5
 ```
 
 ### /etc/default/limine (for limine-mkinitcpio hook)
+
 ```bash
 nvim /etc/default/limine
 ```
@@ -391,6 +410,7 @@ paru -S limine-snapper-sync
 ## 15. Desktop Environment
 
 ### AUR helper
+
 ```bash
 git clone https://aur.archlinux.org/paru.git
 cd paru && makepkg -si
@@ -398,6 +418,7 @@ cd .. && rm -rf paru
 ```
 
 ### Hyprland + SDDM + portal
+
 ```bash
 pacman -S hyprland xdg-desktop-portal-hyprland xdg-desktop-portal-gtk \
   qt5-wayland qt6-wayland \
@@ -410,6 +431,7 @@ paru -S walker-bin
 ```
 
 ### SDDM Wayland config
+
 ```bash
 mkdir -p /etc/sddm.conf.d/
 nvim /etc/sddm.conf.d/wayland.conf
@@ -424,6 +446,7 @@ CompositorCommand=Hyprland
 ```
 
 ### Use uwsm session in SDDM
+
 At login screen, select **"Hyprland (uwsm-managed)"** — not plain Hyprland.
 This activates `graphical-session.target` correctly, which is required for xdg-desktop-portal.
 
@@ -466,7 +489,7 @@ ELECTRON_OZONE_PLATFORM_HINT=wayland
 ## Key Lessons Learned
 
 | Problem | Solution |
-|---------|----------|
+| --------- | ---------- |
 | UKI boots with wrong/no cmdline | `/etc/kernel/cmdline` must exist — mkinitcpio reads it, NOT `/etc/default/limine` |
 | Limine "Image path not specified" | Path syntax must be `boot():/EFI/Linux/arch-linux.efi` with `boot():` prefix |
 | UEFI ignores custom EFI entries (HP) | Copy to `/boot/EFI/BOOT/BOOTX64.EFI` as fallback |
