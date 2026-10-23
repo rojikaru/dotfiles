@@ -4,22 +4,18 @@
   "positionY": "top",
   "cssPriority": "user",
   "control-center-width": 400,
-  "control-center-height": 860, 
+  "control-center-height": -1,
   "control-center-margin-top": 2,
-  "control-center-margin-bottom": 2,
+  "control-center-margin-bottom": 200,
   "control-center-margin-right": 1,
   "control-center-margin-left": 0,
-
   "notification-window-width": 400,
-  "notification-icon-size": 48,
   "notification-body-image-height": 160,
   "notification-body-image-width": 200,
-
   "timeout": 4,
   "timeout-low": 2,
   "timeout-critical": 6,
-  
-  "fit-to-screen": false,
+  "fit-to-screen": true,
   "keyboard-shortcuts": true,
   "image-visibility": "when-available",
   "transition-time": 200,
@@ -34,7 +30,7 @@
   },
   "notification-visibility": {
     "example-name": {
-      "state": "visible",
+      "state": "enabled",
       "urgency": "Low",
       "app-name": "Spotify"
     }
@@ -63,7 +59,9 @@
       "text": "   Notification Center"
     },
     "mpris": {
-      "blacklist": ["playerctld"],
+      "blacklist": [
+        "playerctld"
+      ],
       "autohide": true,
       "show-album-art": "always",
       "loop-carousel": false
@@ -86,7 +84,7 @@
         {
           "label": "󰍭",
           "command": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
-	        "type": "toggle"
+          "type": "toggle"
         },
         {
           "label": "󰤨",
@@ -100,7 +98,7 @@
           "label": "",
           "command": "nwg-look"
         },
-        { 
+        {
           "label": "󰻂",
           "command": "obs"
         },
@@ -109,15 +107,15 @@
           "command": "hyprlock"
         },
         {
-          "label":"󰜉",
+          "label": "󰜉",
           "command": "systemctl reboot"
         },
         {
-          "label":"󰐥",
+          "label": "󰐥",
           "command": "systemctl poweroff"
         },
         {
-          "label":"󰀝",
+          "label": "󰀝",
           "command": "rfkill toggle all",
           "type": "toggle"
         }
