@@ -486,6 +486,14 @@ ELECTRON_OZONE_PLATFORM_HINT=wayland
 
 ---
 
+## 18. Thunderbolt security (given you have such ports)
+
+Consult [Arch Wiki](https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF#Setting_up_IOMMU)
+for up-to-date info on this topic.
+
+For Intel CPUs (as of 2026), add `intel_iommu=on` parameter in BOTH
+`/etc/kernel/cmdline` and `/etc/default/limine` (`KERNEL_CMDLINE[default]+=" intel_iommu=on"`).
+
 ## Key Lessons Learned
 
 | Problem | Solution |
