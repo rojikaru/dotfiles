@@ -41,6 +41,8 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
+      -- https://github.com/rebelot/kanagawa.nvim#configuration
+      -- wave, lotus, dragon
       colorscheme = "kanagawa-dragon",
     },
   },
