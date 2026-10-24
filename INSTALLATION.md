@@ -460,11 +460,29 @@ systemctl enable tlp
 systemctl enable --now tlp-pd
 
 # Gaming/performance profile
+# balance_performance will allow going to higher clock rate on battery
+# AND go as low as possible when not used
 sudo tee /etc/tlp.d/10-gaming.conf >/dev/null <<'EOF'
 CPU_SCALING_GOVERNOR_ON_AC=performance
 CPU_SCALING_GOVERNOR_ON_BAT=powersave
+CPU_SCALING_GOVERNOR_ON_SAV=powersave
+
 CPU_ENERGY_PERF_POLICY_ON_AC=performance
-CPU_ENERGY_PERF_POLICY_ON_BAT=balance_power
+CPU_ENERGY_PERF_POLICY_ON_BAT=balance_performance
+CPU_ENERGY_PERF_POLICY_ON_SAV=power
+
+WIFI_PWR_ON_AC=off
+WIFI_PWR_ON_BAT=off
+USB_EXCLUDE_BTUSB=1
+
+PCIE_ASPM_ON_AC=default
+PCIE_ASPM_ON_BAT=powersave
+
+RUNTIME_PM_ON_AC=auto
+RUNTIME_PM_ON_BAT=auto
+
+SOUND_POWER_SAVE_ON_AC=1
+SOUND_POWER_SAVE_ON_BAT=1
 EOF
 
 sudo tlp start
@@ -472,21 +490,7 @@ sudo tlp start
 
 ---
 
-## 17. Wayland Environment Variables
-
-```bash
-mkdir -p ~/.config/environment.d
-nvim ~/.config/environment.d/wayland.conf
-```
-
-```ini
-NIXOS_OZONE_WL=1
-ELECTRON_OZONE_PLATFORM_HINT=wayland
-```
-
----
-
-## 18. Thunderbolt security (given you have such ports)
+## 17. Thunderbolt security (given you have such ports)
 
 Consult [Arch Wiki](https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF#Setting_up_IOMMU)
 for up-to-date info on this topic.
