@@ -1,3 +1,11 @@
+-- Workspace rules
+
+hl.config({
+	misc = {
+		focus_on_activate = true,
+	},
+})
+
 -- Special workspaces
 
 hl.window_rule({
@@ -56,10 +64,7 @@ hl.window_rule({
 	decorate = true,
 })
 
--- Workspace rules
-
-hl.config({
-	misc = {
-		focus_on_activate = true,
-	}
+hl.window_rule({
+	match = { class = "kitty" },
+	opacity = "1.0 override 1.0 override",
 })
