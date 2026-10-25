@@ -71,6 +71,7 @@ limine
 linux
 linux-firmware
 linux-headers
+ly
 mako
 man-db
 man-pages
@@ -123,7 +124,6 @@ rofimoji
 rtkit
 rustup
 sbctl
-sddm
 shfmt
 snap-pac
 snapper
