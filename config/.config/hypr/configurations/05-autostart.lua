@@ -5,9 +5,7 @@ hl.on("hyprland.start", function()
 		"gnome-keyring-daemon --start --components=secrets",
 		"hyprpm reload",
 		"uwsm app -- /usr/lib/polkit-kde-authentication-agent-1",
-		"uwsm app -- awww-daemon",
 		"uwsm app -- hyprsunset-init",
-		"uwsm app -- configwatch",
 		"uwsm app -- swaync",
 		"uwsm app -- waybar",
 	}

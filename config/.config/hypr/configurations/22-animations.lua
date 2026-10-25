@@ -13,6 +13,7 @@ hl.layer_rule({ match = { namespace = "rofi" }, blur = true, ignore_alpha = 0.7 
 hl.layer_rule({ match = { namespace = "waybar" }, blur = true, ignore_alpha = 0 })
 hl.layer_rule({ match = { namespace = "swaync-notification-window" }, animation = "slide right" })
 hl.layer_rule({ match = { namespace = "swaync-control-center" }, animation = "slide right" })
-hl.layer_rule({ match = { namespace = "awww-daemon" }, animation = "fade" })
+hl.layer_rule({ match = { namespace = "skwd-paper" }, no_anim = true })
+hl.layer_rule({ match = { namespace = "skwd-wall-vk" }, no_anim = true })
 
 hl.animation({ leaf = "layers", enabled = true, speed = 4, bezier = "MySmooth", style = "slide" })

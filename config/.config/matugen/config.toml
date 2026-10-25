@@ -39,6 +39,7 @@ output_path = '~/.config/rofi/colors/colors-matugen.rasi'
 [templates.waybar]
 input_path = '~/.config/matugen/templates/colors.css'
 output_path = '~/.config/waybar/colors.css'
+post_hook = 'bash -c "pkill -x waybar; uwsm app -- waybar >/dev/null 2>&1 & disown"'
 
 [templates.swaync]
 input_path = '~/.config/matugen/templates/colors-swaync.css'
@@ -58,9 +59,9 @@ output_path = '~/.config/chromium/Default/Extensions/Matugen-theme/manifest.json
 
 # Website colors (userContent.css)
 [templates.zen-colors]
-input_path  = "~/.config/matugen/templates/zen-colors.css"
+input_path = "~/.config/matugen/templates/zen-colors.css"
 output_path = "~/.config/matugen/generated/zen-colors.css"
-post_hook   = '''
+post_hook = '''
 bash -c '
   src="$HOME/.config/matugen/generated/zen-colors.css"
   for profile in "$HOME"/.zen/*.Default*/chrome/; do
@@ -71,9 +72,9 @@ bash -c '
 '''
 
 [templates.pywalfox]
-input_path  = "~/.config/matugen/templates/pywalfox-colors.json"
+input_path = "~/.config/matugen/templates/pywalfox-colors.json"
 output_path = "~/.config/matugen/generated/pywalfox-colors.json"
-post_hook   = '''
+post_hook = '''
 bash -c '
 {
   if command -v pywalfox >/dev/null 2>&1; then

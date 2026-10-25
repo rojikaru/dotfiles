@@ -38,7 +38,9 @@ hyprshutdown
 hyprsunset
 hyprpm
 
-awww
+skwd-deck-steamworks-bin
+skwd-lens-bin
+skwd-wall-v2-bin
 matugen
 wallset
 wallust

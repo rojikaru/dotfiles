@@ -5,6 +5,7 @@ set -euo pipefail
 
 hyprctl reload
 swaync-client -R -rs
-pkill waybar || true
-waybar &
+pkill -x waybar || true
+uwsm app -- waybar >/dev/null 2>&1 &
+disown
 notify-send -a 'Hyprland' -u normal 'Hyprland' 'Hyprland, SwayNC and Waybar restarted'

@@ -52,7 +52,7 @@ apply_binds("uwsm app --", app_binds, "SHIFT")
 local launcher_binds = {
 	{ "SPACE", "launcher" },
 	{ "P", "battery-profile" },
-	{ "SHIFT + W", "wallset" },
+	{ "SHIFT + W", "skwd-wall-v2" },
 	{ "ALT + W", "waybar-menu" },
 	{ "SHIFT + S", "screenshot area" },
 	{ "SHIFT + E", "rofimoji-styled" },

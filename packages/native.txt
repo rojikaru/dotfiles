@@ -4,7 +4,6 @@ acpi_call
 acpid
 adw-gtk-theme
 alsa-utils
-awww
 base
 base-devel
 bat

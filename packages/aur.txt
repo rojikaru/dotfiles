@@ -17,6 +17,9 @@ python-pywal16
 quarto-cli-bin
 r2modman-bin
 rmcl-bin
+skwd-deck-steamworks-bin
+skwd-lens-bin
+skwd-wall-v2-bin
 spotify
 sqlit
 tensaku-bin
