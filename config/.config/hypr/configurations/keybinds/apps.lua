@@ -42,7 +42,6 @@ local app_binds = {
 	{ "B", "zen-browser" },
 	{ "RETURN", "zen-browser" },
 	{ "C", "code" },
-	{ "M", "spotify" },
 	{ "G", "steam" },
 	{ "O", "discord" },
 	{ "Y", "Telegram" },
@@ -66,6 +65,7 @@ local launcher_binds = {
 apply_binds("pkill rofi ||", launcher_binds)
 
 local web_app_binds = {
+	{ "M", "https://music.youtube.com" },
 	{ "I", "https://mail.google.com" },
 	{ "L", "https://app.notion.com" },
 	{ "P", "https://photos.google.com" },
