@@ -76,14 +76,16 @@ umount /mnt
 ### Mount with options
 
 ```bash
-mount -o subvol=@,compress=zstd:3,ssd,space_cache=v2 /dev/mapper/root /mnt
+OPTS=compress=zstd:3,ssd,space_cache=v2
+
+mount -o subvol=@,$OPTS /dev/mapper/root /mnt
 
 mkdir -p /mnt/{boot,home,var/cache/pacman/pkg,var/log,swap}
 
-mount -o subvol=@home,compress=zstd:3,ssd,space_cache=v2 /dev/mapper/root /mnt/home
-mount -o subvol=@pkg,compress=zstd:3,ssd,space_cache=v2 /dev/mapper/root /mnt/var/cache/pacman/pkg
-mount -o subvol=@log,compress=zstd:3,ssd,space_cache=v2 /dev/mapper/root /mnt/var/log
-mount -o subvol=@swap,compress=zstd:3,ssd,space_cache=v2 /dev/mapper/root /mnt/swap
+mount -o subvol=@home,$OPTS /dev/mapper/root /mnt/home
+mount -o subvol=@pkg,$OPTS /dev/mapper/root /mnt/var/cache/pacman/pkg
+mount -o subvol=@log,$OPTS /dev/mapper/root /mnt/var/log
+mount -o subvol=@swap,$OPTS /dev/mapper/root /mnt/swap
 
 mount /dev/nvme0n1p1 /mnt/boot
 ```
@@ -97,6 +99,14 @@ IMPORTANT: don't copy-paste this list blindly!!!
 Some of these packages are for Intel iGPU + Nvidia dGPU combo.
 If you have other hardware, please find the relevant alternatives.
 
+The `lib32-*` packages come from `[multilib]`, which the live ISO has disabled.
+Enable it on the ISO first:
+
+```bash
+nvim /etc/pacman.conf  # uncomment [multilib] section (both lines)
+pacman -Sy
+```
+
 ```bash
 pacstrap -K /mnt \
   base base-devel linux linux-headers linux-firmware \
@@ -104,7 +114,7 @@ pacstrap -K /mnt \
   mesa intel-media-driver vulkan-intel vulkan-icd-loader \
   networkmanager iwd \
   pipewire pipewire-pulse pipewire-alsa wireplumber \
-  nvidia-dkms nvidia-utils lib32-nvidia-utils \
+  nvidia-open-dkms nvidia-utils lib32-nvidia-utils \
   lib32-mesa lib32-vulkan-icd-loader \
   sudo neovim vim curl wget git openssh \
   zsh zsh-completions man-db man-pages \
@@ -143,8 +153,11 @@ echo "hp-omen" > /etc/hostname
 
 # /etc/locale.gen — uncomment:
 # en_US.UTF-8 UTF-8
-# uk_UA.UTF-8 UTF-8
+# other ones you need to have
+
 locale-gen
+
+# or echo any other LANG you have uncommented
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 ```
 
@@ -178,11 +191,9 @@ EDITOR=nvim visudo  # uncomment %wheel ALL=(ALL:ALL) ALL
 btrfs filesystem mkswapfile --size 28g /swap/swapfile
 swapon /swap/swapfile
 swapon --show
-
-# Get resume offset (save this number)
-btrfs inspect-internal map-swapfile -r /swap/swapfile > /tmp/offset.txt
-cat /tmp/offset.txt
 ```
+
+The resume offset for hibernation is configured in step 8.
 
 ---
 
@@ -303,15 +314,19 @@ ENABLE_LIMINE_FALLBACK=yes
 
 ```bash
 systemctl enable NetworkManager
-systemctl enable iwd
 systemctl enable bluetooth
 systemctl enable docker
-systemctl enable sddm
-systemctl enable tlp
 systemctl enable rtkit-daemon
 ```
 
----
+NetworkManager uses iwd for Wi-Fi and starts it itself, so do not enable `iwd.service`:
+
+```bash
+cat > /etc/NetworkManager/conf.d/wifi_backend.conf <<EOF
+[device]
+wifi.backend=iwd
+EOF
+```
 
 ## 11. Exit and Reboot
 
@@ -412,27 +427,29 @@ paru -S limine-snapper-sync
 ### AUR helper
 
 ```bash
-git clone https://aur.archlinux.org/paru.git
-cd paru && makepkg -si
-cd .. && rm -rf paru
+git clone https://aur.archlinux.org/paru.git /tmp/paru
+cd /tmp/paru && makepkg -si
 ```
 
-### Hyprland + SDDM + portal
+### Hyprland + login
 
 ```bash
 pacman -S hyprland xdg-desktop-portal-hyprland xdg-desktop-portal-gtk \
   qt5-wayland qt6-wayland \
-  sddm uwsm \
-  waybar mako \
+  uwsm waybar swaync rofi \
   polkit-kde-agent \
   wl-clipboard
-
-paru -S walker-bin
 ```
 
-### SDDM Wayland config
+After this, choose one option from below.
+
+### SDDM on Wayland config
+
+#### Install & configure
 
 ```bash
+pacman -S sddm
+systemctl enable sddm
 mkdir -p /etc/sddm.conf.d/
 nvim /etc/sddm.conf.d/wayland.conf
 ```
@@ -445,10 +462,30 @@ DisplayServer=wayland
 CompositorCommand=Hyprland
 ```
 
-### Use uwsm session in SDDM
+#### Use uwsm session in SDDM
 
 At login screen, select **"Hyprland (uwsm-managed)"** — not plain Hyprland.
 This activates `graphical-session.target` correctly, which is required for xdg-desktop-portal.
+
+#### Further styling
+
+I chose [SDDM Astronaut theme](https://github.com/Keyitdev/sddm-astronaut-theme)
+with Pixel Sakura GIF =)
+
+### Alternative option: Ly
+
+Kudos to the authors for using [Codeberg](https://codeberg.org/fairyglade/ly)!
+
+```bash
+pacman -S ly
+systemctl disable getty@tty1.service
+systemctl start ly@tty1.service
+```
+
+### Other alternatives: greetd + something fancy
+
+Refer to [Arch Wiki](https://wiki.archlinux.org/title/Greetd)
+for the instructions.
 
 ---
 
@@ -508,4 +545,4 @@ For Intel CPUs (as of 2026), add `intel_iommu=on` parameter in BOTH
 | xdg-desktop-portal dependency failed | Use uwsm session — it activates `graphical-session.target` |
 | No audio (only Dummy Output) | Install `sof-firmware` for Intel HDA on modern laptops |
 | Games low FPS, GPU underutilized | CPU was in `powersave` governor — TLP config needed for AC profile |
-| nvidia-dkms not found | Package is `nvidia-dkms` not `nvidia` on modern kernels |
+| nvidia-dkms not found | Package is `nvidia-open-dkms` not `nvidia` on modern kernels |
