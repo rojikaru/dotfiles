@@ -57,10 +57,6 @@ local launcher_binds = {
 	{ "SHIFT + S", "screenshot area" },
 	{ "SHIFT + E", "rofimoji-styled" },
 	{ "SHIFT + X", "projectpick" },
-
-	-- Copilot button on keyboard
-	-- alternative: install keyd and rebind to right CTRL
-	{ "SHIFT + F23", "projectpick" },
 }
 apply_binds("pkill rofi ||", launcher_binds)
 
