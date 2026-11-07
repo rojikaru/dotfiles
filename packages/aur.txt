@@ -1,4 +1,5 @@
 bash-pipes
+cdecl
 cliamp-bin
 clock-rs-git
 google-chrome

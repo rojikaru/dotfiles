@@ -43,6 +43,7 @@ glow
 gnome-calculator
 gpu-screen-recorder
 gum
+htop
 hypridle
 hyprland
 hyprlock
@@ -139,6 +140,7 @@ sysstat
 telegram-desktop
 terminus-font
 thermald
+thunderbird
 time
 tinyxxd
 tldr
