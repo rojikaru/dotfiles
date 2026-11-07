@@ -58,6 +58,7 @@ intel-media-driver
 intel-ucode
 inxi
 iwd
+kdeconnect
 kernel-modules-hook
 keyd
 kitty
@@ -129,6 +130,7 @@ shfmt
 snap-pac
 snapper
 sof-firmware
+sshfs
 starship
 steam
 stow
@@ -175,6 +177,7 @@ yazi
 yq
 zathura
 zathura-pdf-mupdf
+zed
 zip
 zoxide
 zsh

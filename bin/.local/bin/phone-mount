@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+id=$(kdeconnect-cli -a --id-only | head -n1)
+[ -n "$id" ] || {
+  echo "no reachable device" >&2
+  exit 1
+}
+
+busctl --user call org.kde.kdeconnect \
+  "/modules/kdeconnect/devices/$id/sftp" \
+  org.kde.kdeconnect.device.sftp mountAndWait >/dev/null || exit 1
+
+phone_path="$XDG_RUNTIME_DIR/$id"
+android_path="storage/emulated/0"
+[ -d "$phone_path/$android_path" ] && phone_path="$phone_path/$android_path"
+printf '%s\n' "$phone_path"
