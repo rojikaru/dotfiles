@@ -79,3 +79,5 @@ generated/
 
 !MangoHud/
 !MangoHud/**
+
+!cliamp/config.toml

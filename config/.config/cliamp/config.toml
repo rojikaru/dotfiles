@@ -1,0 +1,6 @@
+theme = ""
+
+speed = 1.00
+
+[ytmusic]
+cookies_from = "chromium+gnomekeyring"
