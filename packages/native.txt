@@ -4,6 +4,7 @@ acpi_call
 acpid
 adw-gtk-theme
 alsa-utils
+android-tools
 base
 base-devel
 bat
@@ -138,6 +139,7 @@ strace
 sudo
 swaync
 swayosd
+syncthing
 sysstat
 telegram-desktop
 terminus-font
