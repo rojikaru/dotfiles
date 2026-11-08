@@ -75,7 +75,6 @@ linux
 linux-firmware
 linux-headers
 ly
-mako
 man-db
 man-pages
 mangohud
