@@ -37,6 +37,7 @@ audio/webm=cliamp-gui.desktop
 text/markdown=nvim.desktop
 text/x-markdown=nvim.desktop
 text/plain=nvim.desktop
+image/heic=imv.desktop
 
 [Added Associations]
 x-scheme-handler/http=zen.desktop;
