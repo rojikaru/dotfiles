@@ -13,7 +13,7 @@ screenshot() {
     grim -g "$(slurp)" "$FILE"
     ;;
   *)
-    echo "Usage: take-screenshot fullscreen|area|draw"
+    echo "Usage: screenshot fullscreen|area|draw"
     exit 1
     ;;
   esac
