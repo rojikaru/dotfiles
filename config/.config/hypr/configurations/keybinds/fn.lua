@@ -3,8 +3,8 @@ hl.bind("XF86PowerOff", hl.dsp.exec_cmd("pkill rofi || powermenu"))
 
 -- Screenshots
 hl.bind("Print", hl.dsp.exec_cmd("screenshot fullscreen"))
-hl.bind("CTRL + PRINT", hl.dsp.exec_cmd("screenshot area"))
-hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("screenshot draw"))
+hl.bind("CTRL + PRINT", hl.dsp.exec_cmd("screenshot draw"))
+hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("screenshot area"))
 
 -- Audio
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1"))
