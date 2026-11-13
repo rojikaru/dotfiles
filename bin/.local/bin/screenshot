@@ -25,6 +25,8 @@ screenshot() {
   fi
 
   wl-copy <"$FILE"
+  setsid bash -c "$(declare -f notify); MODE='$MODE' FILE='$FILE' notify" &>/dev/null &
+  disown
 }
 
 notify() {
@@ -42,12 +44,10 @@ notify() {
 
 if [[ $MODE != "fullscreen" ]] && command -v wayfreeze &>/dev/null; then
   export -f screenshot
+  export -f notify
   export MODE FILE
+
   wayfreeze --after-freeze-cmd "bash -c 'screenshot'" || true
-  setsid bash -c "$(declare -f notify); MODE='$MODE' FILE='$FILE' notify" &>/dev/null &
-  disown
 else
   screenshot
-  setsid bash -c "$(declare -f notify); MODE='$MODE' FILE='$FILE' notify" &>/dev/null &
-  disown
 fi
