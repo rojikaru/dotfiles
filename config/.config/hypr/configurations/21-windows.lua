@@ -68,3 +68,10 @@ hl.window_rule({
 	match = { class = "kitty" },
 	opacity = "1.0 override 1.0 override",
 })
+
+hl.window_rule({
+	match = { title = "^Tensaku$" },
+	float = true,
+	center = true,
+	stay_focused = true,
+})
