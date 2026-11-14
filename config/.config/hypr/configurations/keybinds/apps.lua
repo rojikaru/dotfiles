@@ -1,3 +1,5 @@
+local browser = require("helpers.browser").get_default_browser_bin()
+
 local function apply_binds(cmd_prefix, dict, secondary_mod, joiner)
 	for _, bind in ipairs(dict) do
 		local key, cmd = bind[1], bind[2]
@@ -17,7 +19,7 @@ end
 
 local special_app_binds = {
 	{ "RETURN", TermEmulator },
-	{ "B", "zen-browser" },
+	{ "B", browser },
 }
 apply_binds("uwsm app --", special_app_binds)
 
@@ -39,8 +41,8 @@ local cli_binds = {
 apply_binds("uwsm app -- " .. TermEmulator .. " -e", cli_binds, "SHIFT")
 
 local app_binds = {
-	{ "B", "zen-browser" },
-	{ "RETURN", "zen-browser" },
+	{ "B", browser },
+	{ "RETURN", browser },
 	{ "C", "code" },
 	{ "G", "steam" },
 	{ "O", "discord" },
