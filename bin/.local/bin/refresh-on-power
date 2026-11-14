@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+last=$(hyprctl monitors | grep -oP '^\s+1920x1200@\K[0-9]+' | head -1)
+
+apply() {
+  if [[ $(cat /sys/class/power_supply/ADP1/online) == 1 ]]; then
+    rate=144
+  else
+    rate=60
+  fi
+  [[ $rate == "$last" ]] && return
+  last=$rate
+  hyprctl eval "hl.monitor({ output = 'eDP-1', mode = '1920x1200@$rate', position = '0x0', scale = 1.0 })"
+}
+
+apply
+udevadm monitor --udev --subsystem-match=power_supply | while read -r _; do
+  apply
+done

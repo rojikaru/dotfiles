@@ -8,6 +8,7 @@ hl.on("hyprland.start", function()
 		"uwsm app -- hyprsunset-init",
 		"uwsm app -- swaync",
 		"uwsm app -- waybar",
+		"uwsm app -- refresh-on-power",
 	}
 	for _, cmd in ipairs(commands) do
 		hl.exec_cmd(cmd)
