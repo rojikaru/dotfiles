@@ -146,6 +146,8 @@ arch-chroot /mnt
 
 ### Timezone and locale
 
+Remember: set your own timezone and PC name!!!
+
 ```bash
 ln -sf /usr/share/zoneinfo/Europe/Kyiv /etc/localtime
 hwclock --systohc
@@ -176,9 +178,11 @@ pacman -Syy
 
 ### Users
 
+Remember: set your own username!!!
+
 ```bash
 passwd  # root password
-useradd -m -G wheel,docker,video,input,storage -s /bin/zsh rojikaru
+useradd -m -G power,wheel,docker,video,audio,input,bluetooth,storage -s /bin/zsh rojikaru
 passwd rojikaru
 EDITOR=nvim visudo  # uncomment %wheel ALL=(ALL:ALL) ALL
 ```
@@ -534,6 +538,14 @@ for up-to-date info on this topic.
 
 For Intel CPUs (as of 2026), add `intel_iommu=on` parameter in BOTH
 `/etc/kernel/cmdline` and `/etc/default/limine` (`KERNEL_CMDLINE[default]+=" intel_iommu=on"`).
+
+## 18. Keeping EOL kernels out
+
+```bash
+systemctl enable linux-modules-cleanup.service
+```
+
+Because they pile up quickly, especially if system is updated regularly.
 
 ## Key Lessons Learned
 
