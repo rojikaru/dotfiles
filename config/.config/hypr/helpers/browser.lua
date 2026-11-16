@@ -11,15 +11,30 @@ local dirs = {
 
 local fallback = "firefox"
 
-function M.get_default_browser_bin()
-	local handle = io.popen("xdg-settings get default-web-browser")
-	if not handle then
-		return fallback
+local function default_browser_desktop()
+	local f = io.open(home .. "/.config/mimeapps.list")
+	if not f then
+		return nil
 	end
+	local in_defaults, desktop = false, nil
+	for line in f:lines() do
+		local section = line:match("^%[(.+)%]$")
+		if section then
+			in_defaults = section == "Default Applications"
+		elseif in_defaults then
+			desktop = line:match("^x%-scheme%-handler/https=([^;]+)")
+			if desktop then
+				break
+			end
+		end
+	end
+	f:close()
+	return desktop
+end
 
-	local desktop = handle:read("*a"):gsub("%s+", "")
-	handle:close()
-	if desktop == "" then
+function M.get_default_browser_bin()
+	local desktop = default_browser_desktop()
+	if not desktop then
 		return fallback
 	end
 
