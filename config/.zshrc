@@ -17,5 +17,6 @@ compinit
 setopt SHARE_HISTORY
 setopt INC_APPEND_HISTORY
 
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 # Source everything
 source $XDG_CONFIG_HOME/zsh/rc
